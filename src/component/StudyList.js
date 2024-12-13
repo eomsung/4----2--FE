@@ -1,15 +1,13 @@
 import { useState } from "react";
 import "./StudyList.css";
 
-const PAGENUMBER = 6;
-
 export const StudyList = ({
   items,
   handleKeyword,
   handleOrder,
-  page,
-  handlePage,
-  numPage,
+  pageSize,
+  handlePageSize,
+  totalCount,
 }) => {
   return (
     <div className="study-list">
@@ -27,9 +25,9 @@ export const StudyList = ({
           ))}
         </div>
         <PageButton
-          page={page}
-          handlePage={handlePage}
-          numPage={numPage}
+          pageSize={pageSize}
+          handlePageSize={handlePageSize}
+          totalCount={totalCount}
         ></PageButton>
       </div>
     </div>
@@ -95,25 +93,18 @@ const StudySearchMenu = ({ handleKeyword, handleOrder }) => {
   );
 };
 
-const PageButton = ({ page, handlePage, numPage }) => {
-  const startPage = Math.floor((page - 1) / PAGENUMBER) * PAGENUMBER + 1;
-  const endPage = Math.min(numPage, startPage + PAGENUMBER - 1);
-  const maxPage = Math.ceil(numPage / PAGENUMBER);
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= maxPage) {
-      handlePage(page);
-    }
+const PageButton = ({ pageSize, handlePageSize, totalCount }) => {
+  const handlePageChange = (pageSize) => {
+    handlePageSize(pageSize);
   };
   return (
-    <div>
-      <button onClick={() => handlePageChange(page - 1)} disabled={page === 1}>
-        {"<"}
-      </button>
+    <div className="button-section">
       <button
-        onClick={() => handlePageChange(page + 1)}
-        disabled={page === maxPage}
+        className="see-more-button"
+        onClick={() => handlePageChange(pageSize + 6)}
+        disabled={totalCount <= pageSize}
       >
-        {">"}
+        더보기
       </button>
     </div>
   );
