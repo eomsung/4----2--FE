@@ -10,15 +10,15 @@ const DEFAULTORDER = "recent";
 export const StudyListPage = () => {
   const [studyItems, setStudyItems] = useState({ items: [] });
   const [studyRecentItems, setStudyRecentItems] = useState({ items: [] });
-  const [studyPage, setStudyPage] = useState(DEFAULTPAGE);
+  const [studyPageSize, setStudyPageSize] = useState(DEFAULTPAGESIZE);
   const [order, setOrder] = useState(DEFAULTORDER);
   const [keyword, setKeyword] = useState("");
-  const [numPage, setNumPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(1);
 
   useEffect(() => {
     handleLoadStudy({
-      page: studyPage,
-      pageSize: DEFAULTPAGESIZE,
+      page: DEFAULTPAGE,
+      pageSize: studyPageSize,
       order: order,
       keyword: keyword,
     });
@@ -27,7 +27,7 @@ export const StudyListPage = () => {
       pageSize: DEFAULTRECENTPAGESIZE,
       order: DEFAULTORDER,
     });
-  }, [order, keyword, studyPage, numPage]);
+  }, [order, keyword, studyPageSize, totalCount]);
 
   const handleLoadStudy = async (Options) => {
     let data = await getStudyItem(Options);
@@ -37,7 +37,7 @@ export const StudyListPage = () => {
   const handleLoadRecentStudy = async (Options) => {
     let data = await getStudyItem(Options);
     setStudyRecentItems(data);
-    setNumPage(data.totalCount);
+    setTotalCount(data.totalCount);
   };
 
   return (
@@ -47,9 +47,9 @@ export const StudyListPage = () => {
         items={studyItems.list || []}
         handleKeyword={setKeyword}
         handleOrder={setOrder}
-        page={studyPage}
-        handlePage={setStudyPage}
-        numPage={numPage}
+        pageSize={studyPageSize}
+        handlePageSize={setStudyPageSize}
+        totalCount={totalCount}
       ></StudyList>
     </div>
   );
