@@ -17,3 +17,14 @@
   border-radius: 1.5rem;
   border: 0.1rem solid #dddddd;
 }
+.button-section {
+  display: flex;
+  justify-content: center;
+}
+.see-more-button {
+  background-color: #ffffff;
+  border-radius: 2rem;
+  border: 0.1rem solid #dddddd;
+  padding: 1.7rem 11.9rem 1.7rem 11.9rem;
+  margin-top: 4rem;
+}
