@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./StudyList.css";
 import { StudyItem } from "./StudyItem.js";
+
 export const StudyList = ({
   items,
   handleKeyword,
