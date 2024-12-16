@@ -17,9 +17,7 @@ export const StudyItem = ({ item }) => {
       createdAt: item.createdAt,
     };
     saveRecentStudy(studyData);
-    //해당 스터디로 이동하는거 추가해야함
     navigate(`/study/${item.id}`);
-    console.log("click");
   };
   return (
     <div className="study-item-box" onClick={handleStudyClick}>
