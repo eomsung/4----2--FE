@@ -28,3 +28,14 @@
   padding: 1.7rem 11.9rem 1.7rem 11.9rem;
   margin-top: 4rem;
 }
+.study-list-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.study-list-empty p {
+  color: #818181;
+  font-size: 2rem;
+  font-weight: 500;
+}

@@ -6,11 +6,26 @@ export const getStudyItem = async ({
   orderBy = "recent",
   keyword = "",
 }) => {
-  const res = await fetch(
-    `${BASE_URL}/study?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`,
-    {
-      method: "GET",
+  try {
+    if (!Number.isInteger(page) || page < 1) {
+      throw new Error("Invalid page");
     }
-  );
-  return res.json();
+    if (!Number.isInteger(pageSize) || pageSize < 1) {
+      throw new Error("Invalid pageSize");
+    }
+    const res = await fetch(
+      `${BASE_URL}/study?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`,
+      {
+        method: "GET",
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+    }
+
+    return res.json();
+  } catch (e) {
+    console.log(e.message);
+    return { list: [], totalCount: 0 };
+  }
 };

@@ -10,6 +10,7 @@ export const StudyList = ({
   handlePageSize,
   totalCount,
 }) => {
+  const isStudyListEmpty = items.length === 0;
   return (
     <div className="study-list">
       <div className="study-list-wrap">
@@ -19,11 +20,17 @@ export const StudyList = ({
           handleOrder={handleOrder}
         ></StudySearchMenu>
         <div className="study-list-box">
-          {items.map((item, index) => (
-            <div key={index} item={item}>
-              <StudyItem item={item}></StudyItem>
+          {!isStudyListEmpty ? (
+            items.map((item, index) => (
+              <div key={index} item={item}>
+                <StudyItem item={item}></StudyItem>
+              </div>
+            ))
+          ) : (
+            <div className="study-list-empty">
+              <p style={{ padding: "30rem" }}>아직 둘러볼 스터디가 없어요</p>
             </div>
-          ))}
+          )}
         </div>
         <PageButton
           pageSize={pageSize}

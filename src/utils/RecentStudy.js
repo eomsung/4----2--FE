@@ -13,10 +13,11 @@ export const saveRecentStudy = (study) => {
 
     localStorage.setItem(RECENTKEY, JSON.stringify(newStudy));
   } catch (error) {
-    console.error("최근 스터디 저장 실패:", error);
+    console.error("recent store is failed:", error);
   }
 };
 
 export const getRecentStudies = () => {
-  return JSON.parse(localStorage.getItem(RECENTKEY)) || [];
+  return [];
+  // return JSON.parse(localStorage.getItem(RECENTKEY)) || [];
 };
