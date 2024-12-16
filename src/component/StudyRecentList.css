@@ -23,7 +23,7 @@
 .study-list-box {
   display: flex;
   height: auto;
-  max-width: 112.2rem;
+  width: 112.2rem;
   flex-wrap: wrap;
   gap: 2.4rem;
 }
