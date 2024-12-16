@@ -3,8 +3,8 @@ import { getStudyItem } from "../api/studyService.js";
 import { StudyRecentList } from "../component/StudyRecentList.js";
 import { StudyList } from "../component/StudyList.js";
 import "./StudyListPage.css";
+import { getRecentStudies } from "../utils/RecentStudy.js";
 const DEFAULTPAGE = 1;
-const DEFAULTRECENTPAGESIZE = 3;
 const DEFAULTPAGESIZE = 6;
 const DEFAULTORDER = "recent";
 export const StudyListPage = () => {
@@ -16,29 +16,27 @@ export const StudyListPage = () => {
   const [totalCount, setTotalCount] = useState(1);
 
   useEffect(() => {
-    console.log(order);
+    handleLoadRecentStudy();
+  }, []);
+
+  useEffect(() => {
     handleLoadStudy({
       page: DEFAULTPAGE,
       pageSize: studyPageSize,
       orderBy: order,
       keyword: keyword,
     });
-    handleLoadRecentStudy({
-      page: DEFAULTPAGE,
-      pageSize: DEFAULTRECENTPAGESIZE,
-      orderBy: DEFAULTORDER,
-    });
   }, [order, keyword, studyPageSize, totalCount]);
 
   const handleLoadStudy = async (Options) => {
     let data = await getStudyItem(Options);
+    setTotalCount(data.totalCount);
     setStudyItems(data);
   };
 
-  const handleLoadRecentStudy = async (Options) => {
-    let data = await getStudyItem(Options);
-    setStudyRecentItems(data);
-    setTotalCount(data.totalCount);
+  const handleLoadRecentStudy = async () => {
+    const recentStudy = getRecentStudies();
+    setStudyRecentItems({ list: recentStudy });
   };
 
   return (

@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3100";
+const BASE_URL = "http://localhost:3001";
 
 export const getStudyItem = async ({
   page = 1,
