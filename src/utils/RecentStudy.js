@@ -18,6 +18,5 @@ export const saveRecentStudy = (study) => {
 };
 
 export const getRecentStudies = () => {
-  return [];
-  // return JSON.parse(localStorage.getItem(RECENTKEY)) || [];
+  return JSON.parse(localStorage.getItem(RECENTKEY)) || [];
 };
