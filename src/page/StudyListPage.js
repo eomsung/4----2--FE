@@ -8,24 +8,25 @@ const DEFAULTRECENTPAGESIZE = 3;
 const DEFAULTPAGESIZE = 6;
 const DEFAULTORDER = "recent";
 export const StudyListPage = () => {
-  const [studyItems, setStudyItems] = useState({ items: [] });
-  const [studyRecentItems, setStudyRecentItems] = useState({ items: [] });
+  const [studyItems, setStudyItems] = useState({ list: [] });
+  const [studyRecentItems, setStudyRecentItems] = useState({ list: [] });
   const [studyPageSize, setStudyPageSize] = useState(DEFAULTPAGESIZE);
   const [order, setOrder] = useState(DEFAULTORDER);
   const [keyword, setKeyword] = useState("");
   const [totalCount, setTotalCount] = useState(1);
 
   useEffect(() => {
+    console.log(order);
     handleLoadStudy({
       page: DEFAULTPAGE,
       pageSize: studyPageSize,
-      order: order,
+      orderBy: order,
       keyword: keyword,
     });
     handleLoadRecentStudy({
       page: DEFAULTPAGE,
       pageSize: DEFAULTRECENTPAGESIZE,
-      order: DEFAULTORDER,
+      orderBy: DEFAULTORDER,
     });
   }, [order, keyword, studyPageSize, totalCount]);
 

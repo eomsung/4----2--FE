@@ -58,8 +58,10 @@ const StudySearchMenu = ({ handleKeyword, handleOrder }) => {
         ></input>
       </form>
       <select onChange={handleOrderChange} className="study-select">
-        <option value="recent">최근순</option>
-        <option value="older">오래된순</option>
+        <option value="recent">최근 순</option>
+        <option value="oldest">오래된 순</option>
+        <option value="highestPoint">많은 포인트 순</option>
+        <option value="lowestPoints">적은 포인트 순</option>
       </select>
     </div>
   );
