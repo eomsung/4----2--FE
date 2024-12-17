@@ -23,10 +23,10 @@ https://curse-queen-c5b.notion.site/159b903f477180f8bd4fef1acc89e3ef?v=159b903f4
 
 ## 기술 스택
 
-Frontend: JavaScript, React.js, scss
-Backend: Express.js, PrismaORM
-Database: PostgreSQL
-공통 Tool: Git & Github, Discord, notion
+- Frontend: JavaScript, React.js, scss
+- Backend: Express.js, PrismaORM
+- Database: PostgreSQL
+- 공통 Tool: Git & Github, Discord, notion
 
 ## 팀원별 구현 기능 상세
 
