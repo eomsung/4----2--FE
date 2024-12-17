@@ -10,7 +10,7 @@
 
 이미르 (개인 Github 링크)
 
-이현서 (개인 Github 링크)
+이현서 (개인 Github 링크) : dlgustj321
 
 장래훈 (개인 Github 링크)
 

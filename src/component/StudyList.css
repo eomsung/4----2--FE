@@ -1,0 +1,41 @@
+.submit-box {
+  display: flex;
+  justify-content: space-between;
+}
+.study-input {
+  width: 33.5rem;
+  height: 4.2rem;
+  border-radius: 1.5rem;
+  border: 0.1rem solid #dddddd;
+  padding: 1.2rem 2rem 1.2rem 2rem;
+  box-sizing: border-box;
+}
+.study-select {
+  width: 18rem;
+  padding: 0.9rem 2rem 0.9rem 2rem;
+  box-sizing: border-box;
+  border-radius: 1.5rem;
+  border: 0.1rem solid #dddddd;
+}
+.button-section {
+  display: flex;
+  justify-content: center;
+}
+.see-more-button {
+  background-color: #ffffff;
+  border-radius: 2rem;
+  border: 0.1rem solid #dddddd;
+  padding: 1.7rem 11.9rem 1.7rem 11.9rem;
+  margin-top: 4rem;
+}
+.study-list-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.study-list-empty p {
+  color: #818181;
+  font-size: 2rem;
+  font-weight: 500;
+}
