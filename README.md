@@ -4,17 +4,17 @@ https://curse-queen-c5b.notion.site/159b903f477180f8bd4fef1acc89e3ef?v=159b903f4
 
 ## 팀원 구성
 
-김형준 (개인 Github 링크) : 
+김형준 (개인 Github 링크) : Kimhyeog
 
 엄성민 (개인 Github 링크) : eomsung
 
-이미르 (개인 Github 링크) :
+이미르 (개인 Github 링크) : imireu
 
 이현서 (개인 Github 링크) : dlgustj321
 
-장래훈 (개인 Github 링크):
+장래훈 (개인 Github 링크): fogns149
 
-정진호 (개인 Github 링크):
+정진호 (개인 Github 링크): Jinho Jeong
 
 ## 프로젝트 소개
 - 소개: 개인 공부 관리 및 커뮤니티 서비스
