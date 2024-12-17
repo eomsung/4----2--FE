@@ -10,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<StudyListPage />} />
+        <Route path="/study" element={<StudyPage />} />
         <Route path="/study/:id" element={<StudyPage />} />
         <Route path="/create" element={<StudyCreatePage />}>
           <Route path="focus" element={<TodayFocusPage />} />
