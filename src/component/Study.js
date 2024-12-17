@@ -1,7 +1,5 @@
 import { useState } from "react";
 import "./study.css";
-import "../img/colorful-wall.jpeg";
-import "../img/ipad-on-desk.jpeg";
 
 const IMG_5 =
   "https://s3-alpha-sig.figma.com/img/6b6c/6a7d/c4408f7b0937efea8c93acf4f0e18638?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=k7O3ZtQ1mnNuNqVWOmYw87sWiUkzOow5IhqHlBY~c1mGyUXhDeAXMRZlNMBWOMylgWaTfNTi0EGObzh3~J-lzHeCspY0oJh-9SKeu44GDA29TKqO5c4xIM0uC0COXFNuu97qDYkEWSOgMT1mWe2oWxL9c5pqr~ddjgdnH5mLVOcAtyRcyG2BY~lsbDNzepVSWN97AC4pYPZmZiSvkH2OS~ca6oKIDAV9tcmTRvZ8ylyp5-PX1Dfw~LMUA06LKekV8Ug4ZumnhuvJtmkz8o3DIg1YMo3pAGL5rz0bDvsS5prDmG-DBSq20nvMX52KATLm0-TXKes7gDAMbiPQCqh5fg__";
@@ -20,10 +18,10 @@ function Study() {
   };
 
   return (
-    <div class="container">
-      <h2 class="page-title">스터디 만들기</h2>
+    <div className="container">
+      <h2 className="page-title">스터디 만들기</h2>
       <form>
-        <div class="input-container">
+        <div className="input-container">
           <label for="nickname">닉네임</label>
           <input
             id="nickname"
@@ -31,7 +29,7 @@ function Study() {
             placeholder="닉네임을 입력해 주세요"
           />
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <label for="study-title">스터디 이름</label>
           <input
             id="study-title"
@@ -39,11 +37,11 @@ function Study() {
             placeholder="스터디 이름을 입력해주세요"
           />
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <label for="self-intro">소개</label>
           <textarea id="self-intro" placeholder="소개 멘트를 작성해 주세요." />
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <label>배경 이미지를 선택해주세요</label>
           <fieldset>
             <label>
@@ -88,7 +86,7 @@ function Study() {
             </label>
           </fieldset>
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <label for="password">비밀번호</label>
           <input
             type="password"
@@ -96,7 +94,7 @@ function Study() {
             placeholder="비밀번호를 입력해 주세요"
           />
         </div>
-        <div class="input-container">
+        <div className="input-container">
           <label for="password-confirm">비밀번호 확인</label>
           <input
             type="password"
