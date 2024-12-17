@@ -1,6 +1,6 @@
 # {FS4 2팀}
 
-https://curse-queen-c5b.notion.site/159b903f477180f8bd4fef1acc89e3ef?v=159b903f4771816bbefd000ce45fb3ac&pvs=73
+- 팀 노션 링크 : https://curse-queen-c5b.notion.site/159b903f477180f8bd4fef1acc89e3ef?v=159b903f4771816bbefd000ce45fb3ac&pvs=73
 
 ## 팀원 구성
 
