@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getStudyItem } from "../api/studyService.js";
+import { getStudyListItem } from "../api/studyService.js";
 import { StudyRecentList } from "../component/StudyRecentList.js";
 import { StudyList } from "../component/StudyList.js";
 import "./StudyListPage.css";
@@ -29,7 +29,7 @@ export const StudyListPage = () => {
   }, [order, keyword, studyPageSize, totalCount]);
 
   const handleLoadStudy = async (Options) => {
-    let data = await getStudyItem(Options);
+    let data = await getStudyListItem(Options);
     setTotalCount(data.totalCount);
     setStudyItems(data);
   };

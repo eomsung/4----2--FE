@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3100";
 
-export const getStudyItem = async ({
+export const getStudyListItem = async ({
   page = 1,
   pageSize = 3,
   orderBy = "recent",
