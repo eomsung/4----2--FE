@@ -90,7 +90,7 @@ input[type="radio"]:checked + img {
   transform: scale(1.02); /* 약간 확대 */
 }
 
-button {
+.create-button {
   /* display: flex;
   align-items: center; 
   justify-content: center; */
@@ -109,7 +109,7 @@ button {
   z-index: 0;
 }
 
-button::before {
+.create-button::before {
   content: "만들기";
   position: absolute;
   top: 13px;

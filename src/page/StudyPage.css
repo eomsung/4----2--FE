@@ -1,0 +1,7 @@
+.study-page {
+  min-height: 100vh;
+  background-color: #f6f4ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

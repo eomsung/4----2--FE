@@ -29,3 +29,18 @@ export const getStudyListItem = async ({
     return { list: [], totalCount: 0 };
   }
 };
+
+export const getStudyItem = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/study/${id}`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+      // 원래 페이지로 돌아가게?
+    }
+    return res.json();
+  } catch (e) {
+    console.log(e.message);
+  }
+};
