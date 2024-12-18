@@ -9,14 +9,14 @@ export const StudyPage = () => {
   const [studyItem, setStudyItem] = useState();
 
   useEffect(() => {
-    handleStudyItem();
-  }, [id]);
+    const handleStudyItem = async () => {
+      const studyitem = await getStudyItem(id);
+      console.log(studyitem);
+      setStudyItem(studyitem);
+    };
 
-  const handleStudyItem = async () => {
-    const studyitem = await getStudyItem(id);
-    console.log(studyitem);
-    setStudyItem(studyitem);
-  };
+    handleStudyItem();
+  }, [id]); // 의존성 배열에 id 추가
 
   return (
     <div className="study-page">
