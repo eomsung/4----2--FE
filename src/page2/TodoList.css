@@ -1,0 +1,89 @@
+.todo-list-block {
+    margin-bottom: 20px;
+    padding-left: 24px;
+  }
+  
+  .no-todos-message {
+    font-size: 18px;
+    color: #888;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .edit-list-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .edit-list-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  .todo-list-edit {
+    margin-bottom: 20px;
+  }
+  
+  .todo-item-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .todo-item-edit input {
+    width: 80%;
+    padding: 5px;
+  }
+  
+  .add-todo {
+    margin-top: 20px;
+  }
+  
+  .add-todo input {
+    width: 80%;
+    padding: 5px;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal-buttons button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .modal-buttons button:hover {
+    background-color: #4caf50;
+    color: white;
+  }
+  
