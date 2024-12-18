@@ -15,4 +15,18 @@ code {
     monospace;
 }
 
+@font-face {
+  font-family: "JejuDoldam";
+  src: url("./assets/fonts/jeju-doldam.woff2") format("woff2"),
+    url("./assets/fonts/jeju-doldam.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("./assets/fonts/Pretendard-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Pretendard-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
