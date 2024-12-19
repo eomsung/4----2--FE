@@ -12,10 +12,11 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<StudyListPage />} />
-        <Route path="/study" element={<StudyPage />} />
-        <Route path="/study/:id" element={<StudyPage />} />
+        <Route path="study">
+          <Route path=":id" element={<StudyPage />}></Route>
+          <Route path=":id/todo" element={<TodoPage />} />
+        </Route>
         <Route path="/studyCreate" element={<StudyCreatePage />}></Route>
-        <Route path="/todo" element={<TodoPage />} />
       </Routes>
     </BrowserRouter>
   );

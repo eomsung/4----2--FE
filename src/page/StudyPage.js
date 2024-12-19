@@ -11,7 +11,6 @@ export const StudyPage = () => {
   useEffect(() => {
     const handleStudyItem = async () => {
       const studyitem = await getStudyItem(id);
-      console.log(studyitem);
       setStudyItem(studyitem);
     };
 
