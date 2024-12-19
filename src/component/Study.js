@@ -1,5 +1,5 @@
 import "./Study.css";
-
+import { Link, useParams } from "react-router-dom";
 export const Study = ({ item }) => {
   return (
     <div className="study">
@@ -12,6 +12,7 @@ export const Study = ({ item }) => {
 };
 
 const StudyTop = ({ item }) => {
+  const { id } = useParams();
   return (
     <div className="study-top">
       <div className="study-menu">
@@ -28,7 +29,9 @@ const StudyTop = ({ item }) => {
         <div className="study-tilte-box">
           <div className="study-tilte">{`${item.nickname}의 ${item.studyname}`}</div>
           <div className="study-tilte-buttons">
-            <div className="study-tilte-button">오늘의 습관</div>
+            <Link to={`/study/${id}/todo`} className="study-tilte-button">
+              오늘의 습관
+            </Link>
             <div className="study-tilte-button">오늘의 집중</div>
           </div>
         </div>
