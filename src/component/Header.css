@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  padding: 1rem 5rem;
+  background-color: #f6f4ef;
+}
+
+.header-logo {
+  height: 60px;
+  cursor: pointer;
+}
+
+#header-button {
+  background-color: #99c08e;
+  color: #fff;
+  font-family: "jejuDoldam";
+  font-size: 2rem;
+  text-shadow: 0px -2.2px 0px #578246;
+  height: 58px;
+  width: 252px;
+  border-radius: 16px;
+  padding: 10px;
+  cursor: pointer;
+}
+#header-button:hover {
+  background-color: #578246;
+}
+
+/* 반응형 미디어쿼리 */
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .header-logo img {
+    height: 50px;
+  }
+
+  #header-button {
+    width: 160px;
+    height: 58px;
+    font-size: 1.8rem;
+    line-height: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .header-logo img {
+    height: 40px;
+  }
+
+  #header-button {
+    width: 106px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+  }
+}
