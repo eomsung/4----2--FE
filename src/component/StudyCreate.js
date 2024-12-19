@@ -19,7 +19,7 @@ function StudyCreate() {
     studyname: "",
     description: "",
     password: "",
-    img: [],
+    img: "",
   });
 
   const handleChange = (e) => {
