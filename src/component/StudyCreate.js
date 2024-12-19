@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { createStudyGroup } from "../api/studyService";
+import { useNavigate } from "react-router-dom";
 import "./StudyCreate.css";
 
 const IMG_5 =
@@ -11,22 +13,45 @@ const IMG_8 =
   "https://s3-alpha-sig.figma.com/img/c230/ffba/520fab60716f712257d7f6a7fc48a42f?Expires=1735516800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=XFli85hrURDpsrq40rvBYy6vLRmkGcjcKpXmPjesLs0IoRpMraNo5hkLoW9A2iXt0E4uUpEvsEEMuFnKQO0x9rORzfSm~JM9mHfHnQ-XqhfN6YVtY11mr7zAeE4fTEnDFUeItPqUUrN3PuOqEPXclbw14UjHZu2B2mkn~ip6TkaaoWH0pixjHjAhg6AIbzOmfXMffAxdArzEZF-VhVS65qy6B-I47ptJ2ounGqaemvFkijv5zHbg8qpAEGz01NjtkgSaV57qG94mVT89ujdCoNLy0KGNTgp2avCsRwGOT~FZwCfRzUTGg3ILQo4rnSOiizS17AspPYWLk2lFxY4hUQ__";
 
 function StudyCreate() {
-  const [selectedImage, setSelectedImage] = useState(IMG_5);
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    nickname: "",
+    studyname: "",
+    description: "",
+    password: "",
+    img: "",
+  });
 
-  const handleImageChange = (event) => {
-    setSelectedImage(event.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const result = await createStudyGroup(formData);
+      console.log("Study group created:", result);
+      navigate(`/study/${result.id}`);
+    } catch (error) {
+      console.log("Failed to create study group:", error.message);
+    }
   };
 
   return (
     <div className="container">
       <h2 className="page-title">스터디 만들기</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="input-container">
           <label for="nickname">닉네임</label>
           <input
             id="nickname"
             type="text"
+            name="nickname"
+            value={formData.nickname}
+            onChange={handleChange}
             placeholder="닉네임을 입력해 주세요"
+            required
           />
         </div>
         <div className="input-container">
@@ -34,12 +59,21 @@ function StudyCreate() {
           <input
             id="study-title"
             type="text"
+            name="studyname"
+            value={formData.studyname}
+            onChange={handleChange}
             placeholder="스터디 이름을 입력해주세요"
           />
         </div>
         <div className="input-container">
           <label for="self-intro">소개</label>
-          <textarea id="self-intro" placeholder="소개 멘트를 작성해 주세요." />
+          <textarea
+            id="self-intro"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="소개 멘트를 작성해 주세요."
+          />
         </div>
         <div className="input-container">
           <label>배경 이미지를 선택해주세요</label>
@@ -47,40 +81,40 @@ function StudyCreate() {
             <label>
               <input
                 type="radio"
-                name="background"
+                name="img"
                 value={IMG_5}
-                onChange={handleImageChange}
-                checked={selectedImage === IMG_5}
+                onChange={handleChange}
+                checked={formData.img === IMG_5}
               />
               <img src={IMG_5} alt="배경 이미지 5" />
             </label>
             <label>
               <input
                 type="radio"
-                name="background"
+                name="img"
                 value={IMG_6}
-                onChange={handleImageChange}
-                checked={selectedImage === IMG_6}
+                onChange={handleChange}
+                checked={formData.img === IMG_6}
               />
               <img src={IMG_6} alt="배경 이미지 6" />
             </label>
-            <label onChange={handleImageChange}>
+            <label>
               <input
                 type="radio"
-                name="background"
+                name="img"
                 value={IMG_7}
-                onChange={handleImageChange}
-                checked={selectedImage === IMG_7}
+                onChange={handleChange}
+                checked={formData.img === IMG_7}
               />
               <img src={IMG_7} alt="배경 이미지 7" />
             </label>
-            <label onChange={handleImageChange}>
+            <label onChange={handleChange}>
               <input
                 type="radio"
-                name="background"
+                name="img"
                 value={IMG_8}
-                onChange={handleImageChange}
-                checked={selectedImage === IMG_8}
+                onChange={handleChange}
+                checked={formData.img === IMG_8}
               />
               <img src={IMG_8} alt="배경 이미지 8" />
             </label>
@@ -91,6 +125,9 @@ function StudyCreate() {
           <input
             type="password"
             id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
             placeholder="비밀번호를 입력해 주세요"
           />
         </div>
@@ -102,7 +139,9 @@ function StudyCreate() {
             placeholder="비밀번호를 다시 한번 입력해 주세요"
           />
         </div>
-        <button className="create-button">만들기</button>
+        <button type="submit" className="create-button">
+          만들기
+        </button>
       </form>
     </div>
   );
