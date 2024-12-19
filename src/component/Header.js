@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   const goToStudyCreatePage = () => {
-    navigate("/StudyCreate");
+    navigate("/studyCreate");
   };
 
   return (

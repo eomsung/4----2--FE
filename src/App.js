@@ -2,9 +2,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { StudyCreatePage } from "./page/StudyCreatePage";
 import { StudyListPage } from "./page/StudyListPage";
 import { StudyPage } from "./page/StudyPage";
-import { TodayFocusPage } from "./page/TodayFocusPage";
-import { TodayHabitPage } from "./page/TodayHabitPage";
-import TodoTemplate from "./page2/TodoTemplate"; // default export 확인 후 수정
+// import { TodayFocusPage } from "./page/TodayFocusPage";
+import TodoPage from "./page/TodoPage"; // default export 확인 후 수정
 import Header from "./component/Header";
 
 function App() {
@@ -16,7 +15,7 @@ function App() {
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/:id" element={<StudyPage />} />
         <Route path="/studyCreate" element={<StudyCreatePage />}></Route>
-        <Route path="/todo" element={<TodoTemplate />} />
+        <Route path="/todo" element={<TodoPage />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import TodoHead from "./TodoHead";
-import TodoList from "./TodoList";
-import TodoModal from "./TodoModal";
-import { TodoProvider } from "./TodoContext";
-import "./TodoTemplate.css";
+import TodoHead from "../component/TodoHead";
+import TodoList from "../component/TodoList";
+import TodoModal from "../component/TodoModal";
+import { TodoProvider } from "../component/TodoContext";
+import "./TodoPage.css";
 
 const TodoTemplate = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,10 +13,10 @@ const TodoTemplate = () => {
       <div className="todo-template-block">
         <TodoHead />
         <div className="list-nav">
-            <h1 className="list-title">오늘의 습관</h1>
-            <button className="edit-button" onClick={() => setIsModalOpen(true)}>
+          <h1 className="list-title">오늘의 습관</h1>
+          <button className="edit-button" onClick={() => setIsModalOpen(true)}>
             목록 수정
-            </button>
+          </button>
         </div>
         <TodoList />
         {isModalOpen && <TodoModal onClose={() => setIsModalOpen(false)} />}
