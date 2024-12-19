@@ -4,8 +4,7 @@ import { StudyListPage } from "./page/StudyListPage";
 import { StudyPage } from "./page/StudyPage";
 import { TodayFocusPage } from "./page/TodayFocusPage";
 import { TodayHabitPage } from "./page/TodayHabitPage";
-import TodoTemplate from "./page2/TodoTemplate"; // default export 확인 후 수정
-
+import TodoTemplate from "./page2/TodoTemplates"; // default export 확인 후 수정
 
 function App() {
   return (
@@ -14,10 +13,7 @@ function App() {
         <Route path="/" element={<StudyListPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/:id" element={<StudyPage />} />
-        <Route path="/create" element={<StudyCreatePage />}>
-          <Route path="focus" element={<TodayFocusPage />} />
-          <Route path="habit" element={<TodayHabitPage />} />
-        </Route>
+        <Route path="/create" element={<StudyCreatePage />}></Route>
         <Route path="/todo" element={<TodoTemplate />} />
       </Routes>
     </BrowserRouter>
