@@ -1,41 +1,40 @@
 /* TodoTemplateBlock */
 .todo-template-block {
-    width: 1300px;
-    height: 900px;
-    position: relative;
-    background: white;
-    border-radius: 16px;
+  width: 1300px;
+  height: 900px;
+  position: relative;
+  background: white;
+  border-radius: 16px;
 
-    margin: 0 auto;
-    margin-top: 96px;
-    margin-bottom: 32px;
-    padding: 40px 24px;
-    display: flex;
-    flex-direction: column;
+  margin: 0 auto;
+  margin-top: 96px;
+  margin-bottom: 32px;
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .list-nav {
-    display: flex;
-    margin-top: 50px;
-    padding-left: 320px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  margin-top: 50px;
+  padding-left: 320px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .list-title {
-    color: rgba(65,65,65,1);
-    font-size: 24px;
-    font-weight: 600;
-    text-align: center;
+  color: rgba(65, 65, 65, 1);
+  font-size: 24px;
+  font-weight: 600;
+  text-align: center;
 }
 
 .edit-button {
-    color:rgba(129, 129, 129, 1);
-    background-color:rgba(0,0,0,0);
-    
+  color: rgba(129, 129, 129, 1);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .edit-button:hover {
-    background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
 }
