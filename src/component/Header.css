@@ -21,6 +21,7 @@
   height: 58px;
   width: 252px;
   border-radius: 16px;
+  border: none;
   padding: 10px;
   cursor: pointer;
 }
