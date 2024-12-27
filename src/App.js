@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Routes>ㅌ
+      <Routes>
         <Route path="/" element={<StudyListPage />} />
         <Route path="study">
           <Route path=":id" element={<StudyPage />}></Route>
