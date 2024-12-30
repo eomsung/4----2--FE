@@ -15,12 +15,22 @@ export const StudyItem = ({ item }) => {
       description: item.description,
       point: item.point,
       createdAt: item.createdAt,
+      img: item.img,
     };
     saveRecentStudy(studyData);
     navigate(`/study/${item.id}`);
   };
   return (
-    <div className="study-item-box" onClick={handleStudyClick}>
+    <div
+      className="study-item-box"
+      style={{
+        backgroundImage: `url(${item.img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+      onClick={handleStudyClick}
+    >
       <div className="study-item-text-wrap">
         <div className="study-item-text-box">
           <div className="study-item-header">
