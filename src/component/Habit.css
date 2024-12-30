@@ -1,0 +1,209 @@
+@font-face {
+  font-family: "EF_jejudoldam";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  background-color: #f6f4ef;
+  margin: 0;
+  padding: 0;
+  font-family: "Pretendard";
+  /* 원하는 폰트 지정 */
+  font-size: 16px;
+  /* line-height: 1.5; */
+}
+
+.container {
+  background-color: #ffffff;
+  width: 1200px;
+  margin: 40px auto;
+  border-radius: 20px;
+  border: 1px solid #DDDDDD;
+  padding: 40px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+.habit-top {
+
+  width: 1168px;
+  height: auto;
+
+  font-weight: 800;
+  font-size: 24px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.habit-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btns {
+  display: flex;
+  gap: 16px;
+}
+
+.btns>button {
+
+  width: 144px;
+  height: 48px;
+  border-radius: 15px;
+  border: 1px solid #DDDDDD;
+  color: #818181;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #FFFFFF;
+  font-family: "Pretendard";
+}
+
+
+#time-title {
+  color: #818181;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21.48px;
+  font-family: "Pretendard";
+}
+
+
+.habit-contents {
+  width: 1168px;
+  height: 631px;
+  border: 1px solid #DDDDDD;
+  border-radius: 20px;
+  padding: 24px 24px 40px 24px;
+
+
+  gap: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.contents-top {
+
+  width: 1120px;
+  height: 20px;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.contents-top>#todays-habits {
+  font-family: Pretendard;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 28.64px;
+  text-align: right;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.contents-top>#habit-control-btn {
+
+  border: none;
+  background-color: white;
+
+  color: gray;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 16.71px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
+  margin-left: 30px;
+}
+
+
+
+.habits-list {
+  width: 1120px;
+  height: 498px;
+
+  margin-top: 10px;
+  overflow: scroll;
+
+  overflow-x: hidden;
+  overflow-y: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.habit {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 400px;
+  height: 54px;
+
+  background-color: #EEEEEE;
+
+
+
+  gap: 0px;
+  border-radius: 20px;
+  border: none;
+  opacity: 0px;
+
+
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19.09px;
+  text-align: center;
+  text-decoration-style: solid;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
+}
+
+
+.Empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+}
+
+.habitEmptyText {
+
+  padding: 0px;
+  margin: 0px;
+
+  font-family: Pretendard;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 23.87px;
+  opacity: 0.3;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
+
+}
