@@ -13,6 +13,7 @@ export const getStudyListItem = async ({
     if (!Number.isInteger(pageSize) || pageSize < 1) {
       throw new Error("Invalid pageSize");
     }
+    // 커서 기반으로 디벨롭 
     const res = await fetch(
       `${BASE_URL}/study?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`,
       {

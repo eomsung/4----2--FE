@@ -18,21 +18,76 @@ function StudyCreate() {
     nickname: "",
     studyname: "",
     description: "",
-    password: "",
     img: "",
+    password: "",
+    passwordConfirm: "",
   });
+  const [errors, setErrors] = useState({
+    nickname: "",
+    studyname: "",
+    description: "",
+    img: "",
+    password: "",
+    passwordConfirm: "",
+  });
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case "nickname":
+        if (!value) return "닉네임을 입력해주세요";
+        return "";
+      case "studyname":
+        if (!value) return "스터디 이름을 입력해주세요";
+        return "";
+      case "description":
+        if (!value) return "소개를 입력해주세요";
+        return "";
+      case "img":
+        if (!value) return "배경을 선택해주세요";
+        return "";
+      case "password":
+        if (!value) return "비밀번호를 입력해주세요";
+        return "";
+      case "passwordConfirm":
+        if (!value) return "비밀번호를 다시 한번 입력해주세요.";
+        if (formData.password !== value) return "비밀번호가 일치하지 않습니다.";
+        return "";
+      default:
+        return "";
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({ ...formData, [name]: value });
+
+    const errorMsg = validateField(name, value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMsg,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = {};
     try {
-      const result = await createStudyGroup(formData);
-      console.log("Study group created:", result);
-      navigate(`/study/${result.id}`);
+      // 모든 필드 검증
+      Object.keys(formData).forEach((key) => {
+        const errorMsg = validateField(key, formData[key]);
+        if (errorMsg) {
+          newErrors[key] = errorMsg;
+        }
+      });
+
+      setErrors(newErrors);
+
+      if (Object.keys(newErrors).length === 0) {
+        const result = await createStudyGroup(formData);
+        console.log("Study group created:", result);
+        navigate(`/study/${result.id}`);
+      }
     } catch (error) {
       console.log("Failed to create study group:", error.message);
     }
@@ -51,8 +106,12 @@ function StudyCreate() {
             value={formData.nickname}
             onChange={handleChange}
             placeholder="닉네임을 입력해 주세요"
-            required
+            maxLength={12}
+            className={errors.nickname ? "error-input" : ""}
           />
+          {errors.nickname && (
+            <div className="error-msg">*{errors.nickname}</div>
+          )}
         </div>
         <div className="input-container">
           <label for="study-title">스터디 이름</label>
@@ -63,7 +122,11 @@ function StudyCreate() {
             value={formData.studyname}
             onChange={handleChange}
             placeholder="스터디 이름을 입력해주세요"
+            className={errors.studyname ? "error-input" : ""}
           />
+          {errors.studyname && (
+            <div className="error-msg">*{errors.studyname}</div>
+          )}
         </div>
         <div className="input-container">
           <label for="self-intro">소개</label>
@@ -73,7 +136,11 @@ function StudyCreate() {
             value={formData.description}
             onChange={handleChange}
             placeholder="소개 멘트를 작성해 주세요."
+            className={errors.description ? "error-input" : ""}
           />
+          {errors.description && (
+            <div className="error-msg">*{errors.description}</div>
+          )}
         </div>
         <div className="input-container">
           <label>배경 이미지를 선택해주세요</label>
@@ -119,6 +186,7 @@ function StudyCreate() {
               <img src={IMG_8} alt="배경 이미지 8" />
             </label>
           </fieldset>
+          {errors.img && <div className="error-msg">*{errors.img}</div>}
         </div>
         <div className="input-container">
           <label for="password">비밀번호</label>
@@ -129,15 +197,26 @@ function StudyCreate() {
             value={formData.password}
             onChange={handleChange}
             placeholder="비밀번호를 입력해 주세요"
+            className={errors.password ? "error-input" : ""}
           />
+          {errors.password && (
+            <div className="error-msg">*{errors.password}</div>
+          )}
         </div>
         <div className="input-container">
           <label for="password-confirm">비밀번호 확인</label>
           <input
             type="password"
             id="password-confirm"
+            name="passwordConfirm"
+            value={formData.passwordConfirm}
+            onChange={handleChange}
             placeholder="비밀번호를 다시 한번 입력해 주세요"
+            className={errors.passwordConfirm ? "error-input" : ""}
           />
+          {errors.passwordConfirm && (
+            <div className="error-msg">*{errors.passwordConfirm}</div>
+          )}
         </div>
         <button type="submit" className="create-button">
           만들기

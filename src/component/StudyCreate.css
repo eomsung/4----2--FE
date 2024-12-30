@@ -117,3 +117,12 @@ input[type="radio"]:checked + img {
   color: #5e7d57;
   z-index: -1;
 }
+
+.error-msg {
+  font-size: 14px;
+  color: #c41013;
+}
+
+.error-input {
+  border: 1px solid #c41013;
+}
