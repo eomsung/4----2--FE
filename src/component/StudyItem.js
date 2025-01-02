@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { saveRecentStudy } from "../utils/RecentStudy.js";
+import "./StudyItem.css";
 export const StudyItem = ({ item }) => {
   const currentTime = new Date();
   const createdAt = new Date(item.createdAt);
