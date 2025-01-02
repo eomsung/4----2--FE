@@ -29,7 +29,7 @@
 }
 
 .study-item-box {
-  background-color: #e1edde;
+  /* background-color: #e1edde; */
   display: flex;
   width: 35.8rem;
   height: 24.3rem;
@@ -82,5 +82,13 @@
   color: #ffffff;
   padding: 0.6rem 0.8rem 0.6rem 0.8rem;
   border-radius: 5rem;
+  font-size: 1.2rem;
+}
+
+.point {
+  background-color: #ffffff4d;
+  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
+  border-radius: 5rem;
+  border: 0.1rem;
   font-size: 1.2rem;
 }

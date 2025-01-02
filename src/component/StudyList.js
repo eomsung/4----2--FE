@@ -52,7 +52,7 @@ const StudySearchMenu = ({ handleKeyword, handleOrder }) => {
   };
   const handlesubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    // console.log(value);
     handleKeyword(value);
   };
   return (
