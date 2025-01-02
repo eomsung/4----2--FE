@@ -1,12 +1,13 @@
 import { Study } from "../component/Study";
 import { useParams } from "react-router-dom";
-import { getStudyItem } from "../api/studyService";
+import { getStudyItem, getTodoList } from "../api/studyService";
 import { useEffect, useState } from "react";
 import "./StudyPage.css";
 
 export const StudyPage = () => {
   const { id } = useParams();
   const [studyItem, setStudyItem] = useState();
+  const [todoList, setTodoList] = useState();
 
   useEffect(() => {
     const handleStudyItem = async () => {
@@ -14,12 +15,19 @@ export const StudyPage = () => {
       setStudyItem(studyitem);
     };
 
+    const handleTodoList = async () => {
+      const todolist = await getTodoList(id);
+      console.log(todolist);
+      setTodoList(todolist);
+    };
+
     handleStudyItem();
-  }, [id]); // 의존성 배열에 id 추가
+    handleTodoList();
+  }, [id]); // 의존성 배열에 id만 추가
 
   return (
     <div className="study-page">
-      {studyItem ? <Study item={studyItem}></Study> : "loading"}
+      {studyItem ? <Study item={studyItem} todo={todoList}></Study> : "loading"}
     </div>
   );
 };

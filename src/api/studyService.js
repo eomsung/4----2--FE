@@ -13,7 +13,7 @@ export const getStudyListItem = async ({
     if (!Number.isInteger(pageSize) || pageSize < 1) {
       throw new Error("Invalid pageSize");
     }
-    // 커서 기반으로 디벨롭 
+    // 커서 기반으로 디벨롭
     const res = await fetch(
       `${BASE_URL}/study?page=${page}&pageSize=${pageSize}&orderBy=${orderBy}&keyword=${keyword}`,
       {
@@ -64,5 +64,19 @@ export const createStudyGroup = async (studyGroupData) => {
   } catch (error) {
     console.error("Error creating study group:", error.message);
     throw error;
+  }
+};
+
+export const getTodoList = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/study/${id}/todo`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+    }
+    return res.json();
+  } catch (e) {
+    console.log(e.message);
   }
 };

@@ -1,11 +1,12 @@
 import "./Study.css";
 import { Link, useParams } from "react-router-dom";
-export const Study = ({ item }) => {
+import sticker_empty from "../img/assets/sticker_empty.svg";
+export const Study = ({ item, todo }) => {
   return (
     <div className="study">
       <div className="study-wrap">
         <StudyTop item={item} />
-        <StudyBottom />
+        <StudyBottom todo={todo} />
       </div>
     </div>
   );
@@ -50,14 +51,52 @@ const StudyTop = ({ item }) => {
   );
 };
 
-const StudyBottom = () => {
+const StudyBottom = ({ todo }) => {
+  const isEmptyObject =
+    todo && typeof todo === "object" && Object.keys(todo).length === 0;
+  const todoValues = Object.values(todo || {});
   return (
-    <div className="study-bottom">
-      <div style={{ fontWeight: 800, fontSize: "24px" }}>습관 기록표</div>
-      <div className="no-habit">
-        아직 습관이 없어요
-        <br /> 오늘의 습관에서 습관을 생성해보세요
-      </div>
+    <div>
+      {!isEmptyObject ? (
+        <div className="study-bottom">
+          <div style={{ fontWeight: 800, fontSize: "24px" }}>습관 기록표</div>
+          <div className="study-bottom-wrap">
+            <div className="week">
+              <p>월</p>
+              <p>화</p>
+              <p>수</p>
+              <p>목</p>
+              <p>금</p>
+              <p>토</p>
+              <p>일</p>
+            </div>
+            <div className="study-bottom-container">
+              {todoValues.map((habit, index) => (
+                <div key={index} className="habit-container">
+                  <div className="habit">{habit.text}</div>
+                  <div className="skicker">
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                    <img src={sticker_empty} alt="sticker_empty" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="study-bottom">
+          <div style={{ fontWeight: 800, fontSize: "24px" }}>습관 기록표</div>
+          <div className="no-habit">
+            아직 습관이 없어요
+            <br /> 오늘의 습관에서 습관을 생성해보세요
+          </div>
+        </div>
+      )}
     </div>
   );
 };
