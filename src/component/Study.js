@@ -33,7 +33,9 @@ const StudyTop = ({ item }) => {
             <Link to={`/study/${id}/todo`} className="study-tilte-button">
               오늘의 습관
             </Link>
-            <div className="study-tilte-button">오늘의 집중</div>
+            <Link to={`/study/${id}/focus`} className="study-tilte-button">
+              오늘의 집중
+            </Link>
           </div>
         </div>
         <div className="study-content">
