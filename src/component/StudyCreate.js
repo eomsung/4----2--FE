@@ -24,7 +24,7 @@ function StudyCreate() {
     password: "",
     passwordConfirm: "",
   });
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
 
   const validateField = (name, value) => {
     switch (name) {
