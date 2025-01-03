@@ -7,7 +7,6 @@ export const StudyItem = ({ item }) => {
   const timeDiff = currentTime - createdAt;
   const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
   const navigate = useNavigate();
-  console.log(item);
   const handleStudyClick = () => {
     const studyData = {
       id: item.id,
