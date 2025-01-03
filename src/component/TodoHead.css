@@ -19,16 +19,17 @@
 
 .text {
   padding-top: 20px;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 18px;
   color: rgba(129, 129, 129, 1);
+  margin-left: 10px;
 }
 
 .current-time {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 184px;
+  width: 200px;
   height: 35px;
   border-radius: 50px;
   padding: 8px 12px;

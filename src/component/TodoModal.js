@@ -30,14 +30,8 @@ const TodoModal = ({ onClose }) => {
           {todos.map((todo) => (
             <li key={todo.id} className="modal-item">
               <div className="todo-text">{todo.text}</div>
-              <button
-                type="image"
-                id="delHabit"
-                src={deleteLogo}
-                alt="삭제"
-                onClick={() => deleteTodo(todo.id)}
-              >
-                <MdDelete />
+              <button id="delHabit" onClick={() => deleteTodo(todo.id)}>
+                <img src={deleteLogo} alt="삭제"></img>
               </button>
             </li>
           ))}
@@ -53,11 +47,13 @@ const TodoModal = ({ onClose }) => {
           />
         </div>
         <div className="modal-actions">
-          <button className="cancel-btn" onClick={onClose}>
+          <button className="cancel-btn" id="cancel" onClick={onClose}>
             취소
           </button>{" "}
           {/* 취소 버튼 */}
-          <button onClick={onClose}>수정 완료</button>
+          <button onClick={onClose} id="save">
+            수정 완료
+          </button>
         </div>
       </div>
     </div>
