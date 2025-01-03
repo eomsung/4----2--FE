@@ -1,6 +1,8 @@
 import "./Study.css";
 import { Link, useParams } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
+import EmojiPicker from "emoji-picker-react";
+import React, { useState, useRef } from "react";
 export const Study = ({ item, todo }) => {
   return (
     <div className="study">
@@ -14,10 +16,35 @@ export const Study = ({ item, todo }) => {
 
 const StudyTop = ({ item }) => {
   const { id } = useParams();
+
+  const [showPicker, setShowPicker] = useState(false);
+  const buttonRef = useRef(null); // 버튼의 위치를 참조하기 위해 사용
+
+  // 버튼 클릭 시 이모지 선택기 토글
+  const togglePicker = () => {
+    setShowPicker(!showPicker);
+  };
   return (
     <div className="study-top">
       <div className="study-menu">
-        <div>tag</div>
+        <div className="emoji-container">
+          <button ref={buttonRef} onClick={togglePicker}>
+            추가
+          </button>
+          {showPicker && (
+            <div
+              className="emoji-picker-wrapper"
+              style={{
+                position: "absolute",
+                top: `${buttonRef.current?.getBoundingClientRect().bottom}px`,
+                left: `${buttonRef.current?.getBoundingClientRect().left}px`,
+              }}
+            >
+              <EmojiPicker />
+            </div>
+          )}
+        </div>
+
         <div className="study-menu-buttons">
           <div>공유하기</div>
           <div>|</div>
