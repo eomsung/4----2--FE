@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useTodo } from "./TodoContext";
 import { MdDelete } from "react-icons/md";
+import deleteLogo from "../img/assets/habitDeletelogo.svg";
 import "./TodoModal.css";
 
 const TodoModal = ({ onClose }) => {
@@ -30,7 +31,10 @@ const TodoModal = ({ onClose }) => {
             <li key={todo.id} className="modal-item">
               <div className="todo-text">{todo.text}</div>
               <button
-                className="delete-btn"
+                type="image"
+                id="delHabit"
+                src={deleteLogo}
+                alt="삭제"
                 onClick={() => deleteTodo(todo.id)}
               >
                 <MdDelete />

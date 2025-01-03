@@ -66,7 +66,7 @@ h2 {
   margin-top: 20px;
 }
 
-/* button {
+button {
   width: 288px;
   height: 58px;
   font-size: 18px;
@@ -83,19 +83,21 @@ h2 {
 
 button:hover {
   background: rgba(153, 192, 142, 1);
-} */
+}
 
-.cancel-btn {
+*/ .cancel-btn {
   background-color: rgba(221, 221, 221, 1);
 }
 
-.delete-btn {
+#delHabit {
+  width: 50px;
+  height: 50px;
+  padding: 12px;
   border-radius: 35px;
-  background-color: rgba(253, 224, 233, 1);
-  width: 48px;
-  height: 48px;
+  opacity: 0px;
   margin-top: 10px;
-  margin-left: 10px;
+  background: #FDE0E9;
+
 }
 
 .input-text {
