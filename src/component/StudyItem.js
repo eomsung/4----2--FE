@@ -23,13 +23,7 @@ export const StudyItem = ({ item }) => {
   };
   return (
     <div
-      className="study-item-box"
-      style={{
-        backgroundImage: `url(${item.img})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className={`study-item-box study-item-box-${item.img}`}
       onClick={handleStudyClick}
     >
       <div className="study-item-text-wrap">
