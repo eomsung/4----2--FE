@@ -7,7 +7,6 @@ export const StudyItem = ({ item }) => {
   const timeDiff = currentTime - createdAt;
   const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
   const navigate = useNavigate();
-
   const handleStudyClick = () => {
     const studyData = {
       id: item.id,
@@ -38,9 +37,12 @@ export const StudyItem = ({ item }) => {
           <div>{item.description}</div>
         </div>
         <div className="tag-box">
-          <div className="tag">tag1</div>
-          <div className="tag">tag2</div>
-          <div className="tag">tag3</div>
+          {item.Emoticon &&
+            item.Emoticon.map((emoticon, index) => (
+              <div key={index} className="tag">
+                {`${emoticon.emoticons} ${emoticon.count}`}
+              </div>
+            ))}
         </div>
       </div>
     </div>
