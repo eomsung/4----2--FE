@@ -17,13 +17,13 @@
 .list-nav {
   display: flex;
   margin-top: 50px;
-  padding-left: 320px;
   text-align: center;
   align-items: center;
   justify-content: center;
 }
 
 .list-title {
+  margin-left: 70px;
   color: rgba(65, 65, 65, 1);
   font-size: 24px;
   font-weight: 600;
@@ -31,8 +31,23 @@
 }
 
 .edit-button {
+  margin-left: 70px;
   color: rgba(129, 129, 129, 1);
   background-color: rgba(0, 0, 0, 0);
+
+  border: none;
+  background-color: white;
+
+  color: gray;
+  font-family: Pretendard;
+  font-size: 14px;
+  font-weight: 900;
+  line-height: 16.71px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+
+  margin-left: 30px;
 }
 
 .edit-button:hover {

@@ -1,0 +1,33 @@
+.BackgroundOption > input[type="radio"] {
+  display: none;
+}
+
+.BackgroundOption img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border: 2px solid transparent; /* 기본 테두리 */
+  transition: transform 0.2s, border 0.2s;
+  position: relative;
+  z-index: 1;
+}
+
+.BackgroundOption > input[type="radio"]:checked + img {
+  border: 1.5px solid #99c08e; /* 선택 시 테두리 강조 */
+  transform: scale(1.02); /* 약간 확대 */
+}
+
+.BackgroundOption > input[type="radio"]:checked + img::after {
+  content: "";
+  background-image: url("./../img/bgSelected.png");
+  background-size: cover;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  z-index: 10;
+}

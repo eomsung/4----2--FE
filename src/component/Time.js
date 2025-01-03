@@ -12,7 +12,9 @@ function Time() {
     const minutes = String(today.getMinutes()).padStart(2, "0");
     const seconds = String(today.getSeconds()).padStart(2, "0");
 
-    setTimer(`${year}-${month}-${date}일 오후${hours}:${minutes}:${seconds}`);
+    setTimer(
+      `${year}-${month}-${date}일 오후${hours % 12}:${minutes}:${seconds}`
+    );
   };
 
   useEffect(() => {
