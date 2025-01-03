@@ -20,7 +20,6 @@ const StudyTop = ({ item }) => {
   const [showPicker, setShowPicker] = useState(false);
   const buttonRef = useRef(null); // 버튼의 위치를 참조하기 위해 사용
 
-  // 버튼 클릭 시 이모지 선택기 토글
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };

@@ -38,7 +38,7 @@ export const StudyItem = ({ item }) => {
           <div>{item.description}</div>
         </div>
         <div className="tag-box">
-          <div className="tag">tag1</div>
+          <div className="tag">{item.tags}</div>
           <div className="tag">tag2</div>
           <div className="tag">tag3</div>
         </div>
