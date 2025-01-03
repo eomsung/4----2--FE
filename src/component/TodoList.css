@@ -4,10 +4,30 @@
 }
 
 .no-todos-message {
-  font-size: 18px;
-  color: #888;
+  width: 1120px;
+  height: 498px;
+  gap: 10px 0px;
+  opacity: 0px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.habitEmptyText {
+  padding: 0px;
+  margin: 0px;
+
+  font-family: Pretendard;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 23.87px;
+  opacity: 0.3;
   text-align: center;
-  padding: 20px;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 .edit-list-btn {

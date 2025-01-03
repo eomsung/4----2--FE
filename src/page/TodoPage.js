@@ -25,6 +25,7 @@ const TodoTemplate = () => {
     <TodoProvider>
       <div className="todo-template-block">
         {studyItem ? <TodoHead item={studyItem} /> : "loading"}
+
         <div className="list-nav">
           <h1 className="list-title">오늘의 습관</h1>
           <button className="edit-button" onClick={() => setIsModalOpen(true)}>
