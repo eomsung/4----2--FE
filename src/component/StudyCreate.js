@@ -86,7 +86,7 @@ function StudyCreate() {
   };
 
   return (
-    <div className="container">
+    <div className="StudyCreate">
       <h2 className="page-title">스터디 만들기</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
