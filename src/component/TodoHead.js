@@ -2,12 +2,16 @@ import React from "react";
 import Time from "./Time.js";
 import "./TodoHead.css"; // CSS 파일을 import
 import { useNavigate } from "react-router-dom";
-
+import { useParams } from "react-router-dom";
 function TodoHead({ item }) {
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const goToStudyListPage = () => {
     navigate("/");
+  };
+
+  const goToStudyFocusPage = () => {
+    navigate(`/study/${id}/focus`);
   };
 
   return (
@@ -21,7 +25,7 @@ function TodoHead({ item }) {
           </div>
         </div>
         <div className="btns">
-          <button>오늘의 집중 &gt;</button>
+          <button onClick={goToStudyFocusPage}>오늘의 집중 &gt;</button>
           <button onClick={goToStudyListPage}>홈 &gt;</button>
         </div>
       </div>

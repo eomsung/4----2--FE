@@ -17,13 +17,12 @@ export const StudyPage = () => {
 
     const handleTodoList = async () => {
       const todolist = await getTodoList(id);
-      console.log(todolist);
       setTodoList(todolist);
     };
 
     handleStudyItem();
     handleTodoList();
-  }, [id]); // 의존성 배열에 id만 추가
+  }, [id, studyItem]); // 의존성 배열에 id만 추가
 
   return (
     <div className="study-page">
