@@ -84,6 +84,12 @@
   border-radius: 5rem;
   font-size: 1.2rem;
   box-sizing: border-box;
+  gap: 0.5rem;
+  border: none;
+}
+
+.tag-text {
+  font-size: 1.6rem;
 }
 
 .point {
