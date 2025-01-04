@@ -166,10 +166,11 @@
   color: #818181;
 }
 
-/* .emoji-container {
+.emoji-container {
   display: flex;
+
   gap: 1rem;
-} */
+}
 
 .emoji-picker-wrapper {
   z-index: 1000;

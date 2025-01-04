@@ -27,6 +27,14 @@ const StudyTop = ({ item }) => {
     <div className="study-top">
       <div className="study-menu">
         <div className="emoji-container">
+          <div className="tag-box">
+            {item.Emoticon &&
+              item.Emoticon.map((emoticon, index) => (
+                <div key={index} className="tag">
+                  {`${emoticon.emoticons} ${emoticon.count}`}
+                </div>
+              ))}
+          </div>
           <button ref={buttonRef} onClick={togglePicker}>
             추가
           </button>
