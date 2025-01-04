@@ -3,6 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
+import { createEmoticon } from "../api/studyService";
+import ic_smilce from "../img/assets/ic_smile.svg";
+
 export const Study = ({ item, todo }) => {
   return (
     <div className="study">
@@ -23,6 +26,12 @@ const StudyTop = ({ item }) => {
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };
+
+  const handleEmoticonClick = async (e) => {
+    console.log(e.emoji);
+    await createEmoticon(id, e.emoji);
+  };
+
   return (
     <div className="study-top">
       <div className="study-menu">
@@ -35,7 +44,12 @@ const StudyTop = ({ item }) => {
                 </div>
               ))}
           </div>
-          <button ref={buttonRef} onClick={togglePicker}>
+          <button
+            ref={buttonRef}
+            onClick={togglePicker}
+            className="emoticon-button"
+          >
+            <img src={ic_smilce} alt="ic_smilce"></img>
             추가
           </button>
           {showPicker && (
@@ -47,7 +61,7 @@ const StudyTop = ({ item }) => {
                 left: `${buttonRef.current?.getBoundingClientRect().left}px`,
               }}
             >
-              <EmojiPicker />
+              <EmojiPicker onEmojiClick={handleEmoticonClick} />
             </div>
           )}
         </div>

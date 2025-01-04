@@ -64,10 +64,7 @@
   align-items: center;
   font-size: 1.8rem;
   font-weight: 700;
-}
-.point {
-  font-size: 1.2rem;
-  font-weight: 500;
+  white-space: nowrap;
 }
 .date {
   font-size: 1.4rem;
@@ -78,17 +75,27 @@
   gap: 0.5rem;
 }
 .tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #00000066;
   color: #ffffff;
   padding: 0.6rem 0.8rem 0.6rem 0.8rem;
   border-radius: 5rem;
   font-size: 1.2rem;
+  box-sizing: border-box;
 }
 
 .point {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #ffffff4d;
   padding: 0.4rem 0.8rem 0.4rem 0.8rem;
   border-radius: 5rem;
   border: 0.1rem;
   font-size: 1.2rem;
+  font-weight: 500;
+  gap: 0.8rem;
+  white-space: nowrap;
 }

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { saveRecentStudy } from "../utils/RecentStudy.js";
 import "./StudyItem.css";
+import ic_point from "../img/assets/ic_point.svg";
 export const StudyItem = ({ item }) => {
   const currentTime = new Date();
   const createdAt = new Date(item.createdAt);
@@ -16,10 +17,12 @@ export const StudyItem = ({ item }) => {
       point: item.point,
       createdAt: item.createdAt,
       img: item.img,
+      Emoticon: item.Emoticon,
     };
     saveRecentStudy(studyData);
     navigate(`/study/${item.id}`);
   };
+  console.log(item);
   return (
     <div
       className={`study-item-box study-item-box-${item.img}`}
@@ -30,7 +33,10 @@ export const StudyItem = ({ item }) => {
           <div className="study-item-header">
             <div className="study-item-tilte">
               {`${item.nickname}의${item.studyname}`}
-              <p className="point">{`${item.point}P 흭득`}</p>
+              <p className="point">
+                <img src={ic_point} alt="ic_point" />
+                {`${item.point}P 흭득`}
+              </p>
             </div>
             <p className="date">{`${days}일째 진행 중`}</p>
           </div>
