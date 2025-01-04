@@ -166,3 +166,8 @@ fieldset {
     left: 280px;
   }
 }
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
