@@ -1,14 +1,26 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { getTodoList } from "../api/studyService";
+import { useParams } from "react-router-dom";
 
 const TodoContext = createContext();
 
 export const useTodo = () => useContext(TodoContext);
 
 export const TodoProvider = ({ children }) => {
+  const { id } = useParams();
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    const handleTodoList = async () => {
+      const todolist = await getTodoList(id);
+      setTodos(todolist);
+    };
+
+    handleTodoList();
+  }, [id]);
+
   const addTodo = (text) => {
-    const newTodo = { id: Date.now(), text, done: false };
+    const newTodo = { text };
     setTodos([...todos, newTodo]);
   };
 
