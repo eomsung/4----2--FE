@@ -80,3 +80,98 @@ export const getTodoList = async (id) => {
     console.log(e.message);
   }
 };
+
+export const createTodoList = async (id, text) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${id}/todo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: text }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error creating study group:", e.message);
+    throw e;
+  }
+};
+
+export const createManyTodoList = async (id, todos) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${id}/todos`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todos),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error creating study group:", e.message);
+    throw e;
+  }
+};
+
+export const deleteTodoList = async (studyId, todoId) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/study/${studyId}/todo/${todoId}`,
+      {
+        method: "DELETE",
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error creating study group:", e.message);
+    throw e;
+  }
+};
+
+export const deleteManyTodoList = async (studyId) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${studyId}/todo`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error creating study group:", e.message);
+    throw e;
+  }
+};
+
+export const createEmoticon = async (id, emoticonData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${id}/emoticon`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ emoticon: emoticonData }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating study group:", error.message);
+    throw error;
+  }
+};

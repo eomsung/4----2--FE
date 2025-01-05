@@ -1,6 +1,13 @@
 import "./Study.css";
 import { Link, useParams } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
+import EmojiPicker from "emoji-picker-react";
+import React, { useState, useRef } from "react";
+import { createEmoticon } from "../api/studyService";
+import ic_smilce from "../img/assets/ic_smile.svg";
+import ic_point from "../img/assets/ic_point.svg";
+import ic_plus from "../img/assets/ic_plus.svg";
+
 export const Study = ({ item, todo }) => {
   return (
     <div className="study">
@@ -14,10 +21,90 @@ export const Study = ({ item, todo }) => {
 
 const StudyTop = ({ item }) => {
   const { id } = useParams();
+
+  const [showPicker, setShowPicker] = useState(false);
+  const [showMoreEmoji, setShowMoreEmoji] = useState(false);
+  const buttonRef = useRef(null);
+  const emojiRef = useRef(null);
+  const togglePicker = () => {
+    setShowPicker(!showPicker);
+  };
+
+  const toggleMoreEmoji = () => {
+    setShowMoreEmoji(!showMoreEmoji);
+  };
+
+  const handleEmoticonClick = async (e) => {
+    await createEmoticon(id, e.emoji);
+  };
+
   return (
     <div className="study-top">
       <div className="study-menu">
-        <div>tag</div>
+        <div className="emoji-container">
+          <div className="tag-box ">
+            {item.Emoticon &&
+              item.Emoticon.slice(0, 3).map((emoticon, index) => (
+                <div key={index} className="tag tag-text">
+                  {`${emoticon.emoticons} ${emoticon.count}`}
+                </div>
+              ))}
+            {item.Emoticon.length > 3 && (
+              <button
+                ref={emojiRef}
+                onClick={toggleMoreEmoji}
+                className="tag tag-text"
+              >
+                <img src={ic_plus} alt="ic_plus" />
+                {item.Emoticon.length - 3}..
+              </button>
+            )}
+            {showMoreEmoji && (
+              <div
+                className="more-Emoji-wrapper"
+                style={{
+                  position: "absolute",
+                  right: `${
+                    window.innerWidth -
+                    emojiRef.current?.getBoundingClientRect().right -
+                    20
+                  }px`,
+                }}
+              >
+                <div className="more-Emoji-container">
+                  {item.Emoticon.length > 3 &&
+                    item.Emoticon.slice(3, item.Emoticon.length).map(
+                      (emoticon, index) => (
+                        <div key={index} className="tag tag-text">
+                          {`${emoticon.emoticons} ${emoticon.count}`}
+                        </div>
+                      )
+                    )}
+                </div>
+              </div>
+            )}
+          </div>
+          <button
+            ref={buttonRef}
+            onClick={togglePicker}
+            className="emoticon-button"
+          >
+            <img src={ic_smilce} alt="ic_smilce"></img>
+            추가
+          </button>
+          {showPicker && (
+            <div
+              className="emoji-picker-wrapper"
+              style={{
+                position: "absolute",
+                left: `${buttonRef.current?.getBoundingClientRect().left}px`,
+              }}
+            >
+              <EmojiPicker onEmojiClick={handleEmoticonClick} />
+            </div>
+          )}
+        </div>
+
         <div className="study-menu-buttons">
           <div>공유하기</div>
           <div>|</div>
@@ -45,7 +132,10 @@ const StudyTop = ({ item }) => {
           </div>
           <div className="study-point">
             <div className="study-content-subtitle">현재까지 흭득한 포인트</div>
-            <div>{`${item.point}P 흭득`}</div>
+            <div className="point point-text">
+              <img src={ic_point} alt="ic_point" />
+              {`${item.point}P 흭득`}
+            </div>
           </div>
         </div>
       </div>
