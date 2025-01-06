@@ -4,10 +4,11 @@ import sticker_empty from "../img/assets/sticker_empty.svg";
 import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
-import { createEmoticon } from "../api/studyService";
+import { createEmoticon, deleteStudyGroup } from "../api/studyService";
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
+import { deleteRecentStudy } from "../utils/RecentStudy";
 
 export const Study = ({ item, todo }) => {
   return (
@@ -37,6 +38,11 @@ const StudyTop = ({ item }) => {
 
   const handleEmoticonClick = async (e) => {
     await createEmoticon(id, e.emoji);
+  };
+
+  const handleDeleteStudy = async (id) => {
+    deleteRecentStudy(id);
+    await deleteStudyGroup(id);
   };
 
   return (
@@ -111,7 +117,10 @@ const StudyTop = ({ item }) => {
           <div>|</div>
           <div>수정하기</div>
           <div>|</div>
-          <div>스터디 삭제하기</div>
+          <div className="delete-button" onClick={() => handleDeleteStudy(id)}>
+            스터디 삭제하기
+          </div>
+          {/* 비밀번호 모달 구현 되면 삭제 후 홈페이지로 이동하게 수정 */}
         </div>
       </div>
       <div className="study-container">
@@ -148,7 +157,6 @@ const StudyBottom = ({ todo }) => {
   const isEmptyObject =
     todo && typeof todo === "object" && Object.keys(todo).length === 0;
   const todoValues = Object.values(todo || {});
-  // const currentDay = new Date().getDay();
   const getStickerImage = (done) => {
     return done ? sticker_checked : sticker_empty;
   };

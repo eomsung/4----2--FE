@@ -24,7 +24,7 @@ export const getStudyListItem = async ({
       throw new Error(`Error: response status is ${res.status}`);
     }
 
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
     return { list: [], totalCount: 0 };
@@ -40,7 +40,7 @@ export const getStudyItem = async (id) => {
       throw new Error(`Error: response status is ${res.status}`);
       // 원래 페이지로 돌아가게?
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
@@ -64,6 +64,20 @@ export const createStudyGroup = async (studyGroupData) => {
   } catch (error) {
     console.error("Error creating study group:", error.message);
     throw error;
+  }
+};
+
+export const deleteStudyGroup = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/study/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+    }
+    return await res.json();
+  } catch (e) {
+    console.log(e.message);
   }
 };
 
