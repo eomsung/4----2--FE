@@ -135,7 +135,7 @@ export const deleteTodoList = async (studyId, todoId) => {
     const data = await response.json();
     return data;
   } catch (e) {
-    console.error("Error creating study group:", e.message);
+    console.error("Error delete study group:", e.message);
     throw e;
   }
 };
@@ -151,7 +151,30 @@ export const deleteManyTodoList = async (studyId) => {
     const data = await response.json();
     return data;
   } catch (e) {
-    console.error("Error creating study group:", e.message);
+    console.error("Error delete study group:", e.message);
+    throw e;
+  }
+};
+
+export const patchTodoList = async (studyId, todoId, done) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/study/${studyId}/todo/${todoId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ done: done }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error patching study group:", e.message);
     throw e;
   }
 };

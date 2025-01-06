@@ -1,6 +1,7 @@
 import "./Study.css";
 import { Link, useParams } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
+import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
 import { createEmoticon } from "../api/studyService";
@@ -147,6 +148,11 @@ const StudyBottom = ({ todo }) => {
   const isEmptyObject =
     todo && typeof todo === "object" && Object.keys(todo).length === 0;
   const todoValues = Object.values(todo || {});
+  const currentDay = new Date().getDay();
+
+  const getStickerImage = (done) => {
+    return done ? sticker_checked : sticker_empty;
+  };
   return (
     <div>
       {!isEmptyObject ? (
@@ -167,13 +173,13 @@ const StudyBottom = ({ todo }) => {
                 <div key={index} className="habit-container">
                   <div className="habit">{habit.text}</div>
                   <div className="skicker">
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
+                    {[1, 2, 3, 4, 5, 6, 0].map((day, i) => (
+                      <img
+                        key={i}
+                        src={getStickerImage(habit.done && currentDay === day)}
+                        alt="sticker"
+                      />
+                    ))}
                   </div>
                 </div>
               ))}
