@@ -3,7 +3,7 @@ import "./TodayFocusPage.css";
 import { useParams } from "react-router-dom";
 import { getStudyItem } from "../api/studyService";
 import { useNavigate } from "react-router-dom";
-
+import ic_point from "../img/assets/ic_point.svg";
 export function TodayFocusPage() {
   const [timeLeft, setTimeLeft] = useState(1800); // 초기 타이머 시간
   const [isRunning, setIsRunning] = useState(false);
@@ -81,7 +81,10 @@ export function TodayFocusPage() {
         </button>
         <h2 className="roqkf">{`${studyItem.nickname}의 ${studyItem.studyname}`}</h2>
         <p className="point-focus">현재까지 획득한 포인트</p>
-        <button className="pointButton">🌱300획득</button>
+        <button className="pointButton">
+          <img src={ic_point} alt="ic_point" />
+          {`${studyItem.point}흭득`}
+        </button>
         <div className="container-focus">
           {isInputVisible ? (
             <div className="time-input-container">

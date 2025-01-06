@@ -14,7 +14,9 @@ function TodoList() {
           <p className="habitEmptyText">목록 수정을 눌러 습관을 생성해보세요</p>
         </div>
       ) : (
-        todos.map((todo) => <TodoItem key={todo.id} text={todo.text} />)
+        todos.map((todo) => (
+          <TodoItem key={todo.id} text={todo.text} todoId={todo.id} />
+        ))
       )}
     </div>
   );
