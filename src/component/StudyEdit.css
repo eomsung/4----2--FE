@@ -70,7 +70,7 @@ fieldset {
   display: flex;
 }
 
-.create-button {
+.edit-button {
   /* display: flex;
     align-items: center; 
     justify-content: center; */
@@ -89,7 +89,7 @@ fieldset {
   z-index: 0;
 }
 
-.create-button::before {
+.edit-button::before {
   content: "수정하기";
   /* writing-mode: horizontal-tb; */
   position: absolute;
@@ -99,7 +99,7 @@ fieldset {
   z-index: -1;
 }
 
-.error-msg {
+.StudyEdit .error-msg {
   font-size: 14px;
   color: #c41013;
 }
@@ -153,7 +153,7 @@ fieldset {
     width: 100%;
   }
 
-  .create-button::before {
+  .edit-button::before {
     content: "만들기";
     position: absolute;
     top: 13.5px;

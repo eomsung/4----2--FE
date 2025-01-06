@@ -31,6 +31,8 @@ const VerifyPasswordModal = ({ modalRef, item, btnText, handleModalClose }) => {
 
   const handleCancelClick = () => {
     handleModalClose();
+    setInputPassword("");
+    setErrorMsg("");
   };
 
   const handlePasswordToggle = () => {
