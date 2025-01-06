@@ -7,10 +7,6 @@ export const saveRecentStudy = (study) => {
 
     newStudy.unshift(study); // 최신순으로 배치치
 
-    // if (newStudy.length > MAXNUM) {
-    //   newStudy = newStudy.slice(0, MAXNUM);
-    // }
-
     localStorage.setItem(RECENTKEY, JSON.stringify(newStudy));
   } catch (error) {
     console.error("recent store is failed:", error);
