@@ -13,7 +13,6 @@ function TodoItem({ text, todoId }) {
   const handleClick = async () => {
     await patchTodoList(id, todoId, currentDay, !clicked);
     setClicked(!clicked); // 클릭 시 상태 토글
-    console.log(clicked);
   };
   return (
     <div

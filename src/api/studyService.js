@@ -179,6 +179,30 @@ export const patchTodoList = async (studyId, todoId, dayIndex, done) => {
   }
 };
 
+// studyService.js
+
+export const patchStudyPoint = async (studyGroupId, newPoint) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${studyGroupId}/point`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ point: newPoint }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data; // 성공적으로 포인트가 업데이트된 데이터를 반환
+  } catch (error) {
+    console.error("Error updating study point:", error.message);
+    throw error;
+  }
+};
+
 export const createEmoticon = async (id, emoticonData) => {
   try {
     const response = await fetch(`${BASE_URL}/study/${id}/emoticon`, {
