@@ -15,7 +15,7 @@ body {
   /* line-height: 1.5; */
 }
 
-.StudyCreate {
+.StudyEdit {
   background-color: #ffffff;
   width: 696px;
   margin: 40px auto;
@@ -34,33 +34,33 @@ body {
   font-size: 24px;
 }
 
-.StudyCreate form {
+.StudyEdit form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.StudyCreate form .input-container {
+.StudyEdit form .input-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.StudyCreate form input,
-.StudyCreate form textarea {
-  height: 40px;
+.StudyEdit form input,
+.StudyEdit form textarea {
+  height: 48px;
   border-radius: 15px;
   border: 1px solid #dddddd;
   padding: 0 25px;
 }
 
-.StudyCreate form textarea {
+.StudyEdit form textarea {
   height: 98px;
   padding: 20px 25px;
 }
 
-.StudyCreate label {
+label {
   font-weight: 600;
   font-size: 18px;
   display: block;
@@ -72,8 +72,8 @@ fieldset {
 
 .create-button {
   /* display: flex;
-  align-items: center; 
-  justify-content: center; */
+    align-items: center; 
+    justify-content: center; */
 
   position: relative;
 
@@ -90,10 +90,11 @@ fieldset {
 }
 
 .create-button::before {
-  content: "만들기";
+  content: "수정하기";
+  /* writing-mode: horizontal-tb; */
   position: absolute;
   top: 13px;
-  left: 321px;
+  left: 100px;
   color: #5e7d57;
   z-index: -1;
 }
@@ -118,7 +119,7 @@ fieldset {
   position: relative;
 }
 
-.btn-showPassword {
+.StudyEdit .btn-showPassword {
   position: absolute;
 
   width: 24px;
@@ -140,7 +141,7 @@ fieldset {
     width: 100%; /* 화면 너비에 맞게 조정 */
     /* overflow-x: hidden;  */
   }
-  .StudyCreate {
+  .StudyEdit {
     width: 320px;
     margin: 0;
   }
@@ -161,7 +162,7 @@ fieldset {
     z-index: -1;
   }
 
-  .btn-showPassword {
+  .StudyEdit .btn-showPassword {
     top: 43px;
     left: 280px;
   }

@@ -22,7 +22,7 @@ export const StudyPage = () => {
 
     handleStudyItem();
     handleTodoList();
-  }, [id, studyItem]); // 의존성 배열에 id만 추가
+  }, [id]); // 의존성 배열에 id만 추가
 
   return (
     <div className="study-page">

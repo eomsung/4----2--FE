@@ -7,6 +7,7 @@ import { createEmoticon } from "../api/studyService";
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
+import VerifyPasswordModal from "./VerifyPasswordModal";
 
 export const Study = ({ item, todo }) => {
   return (
@@ -26,6 +27,7 @@ const StudyTop = ({ item }) => {
   const [showMoreEmoji, setShowMoreEmoji] = useState(false);
   const buttonRef = useRef(null);
   const emojiRef = useRef(null);
+  const modalRef = useRef();
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };
@@ -38,8 +40,22 @@ const StudyTop = ({ item }) => {
     await createEmoticon(id, e.emoji);
   };
 
+  const handleEditClick = (e) => {
+    modalRef.current.showModal();
+  };
+
+  const handleModalClose = () => {
+    modalRef.current.close();
+  };
+
   return (
     <div className="study-top">
+      <VerifyPasswordModal
+        modalRef={modalRef}
+        item={item}
+        btnText={"수정하러 가기"}
+        handleModalClose={handleModalClose}
+      />
       <div className="study-menu">
         <div className="emoji-container">
           <div className="tag-box ">
@@ -108,7 +124,7 @@ const StudyTop = ({ item }) => {
         <div className="study-menu-buttons">
           <div>공유하기</div>
           <div>|</div>
-          <div>수정하기</div>
+          <div onClick={handleEditClick}>수정하기</div>
           <div>|</div>
           <div>스터디 삭제하기</div>
         </div>
