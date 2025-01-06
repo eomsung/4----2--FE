@@ -8,7 +8,7 @@ export function TodayFocusPage() {
   const [timeLeft, setTimeLeft] = useState(1800); // 초기 타이머 시간
   const [isRunning, setIsRunning] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false); // 입력창 표시 여부
-  const [customMinutes, setCustomMinutes] = useState(0); // 사용자 입력 시간
+  const [customMinutes, setCustomMinutes] = useState(""); // 사용자 입력 시간 (빈 문자열로 초기화)
   const [pauseMessage, setPauseMessage] = useState("");
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export function TodayFocusPage() {
 
   // 시간 설정 처리
   const handleSetTime = () => {
-    setTimeLeft(customMinutes * 60); // 입력된 시간을 초로 변환
+    setTimeLeft(Number(customMinutes) * 60); // 입력된 시간을 초로 변환
     setIsInputVisible(false); // 입력창 숨김
     setIsRunning(false); // 타이머 멈춤
   };
@@ -45,7 +45,19 @@ export function TodayFocusPage() {
     setIsInputVisible(false); // 입력창 숨김
   };
 
-  //////
+  ////// 업데이트된 부분 시작 //////
+  useEffect(() => {
+    if (isInputVisible) {
+      setCustomMinutes(""); // 입력값 초기화 (빈 문자열로 설정)
+      const inputElement = document.querySelector(".time-input");
+      if (inputElement) {
+        inputElement.focus(); // input 태그에 focus
+      }
+    }
+  }, [isInputVisible]);
+  ////// 업데이트된 부분 끝 //////
+
+  ////// Study API 데이터 로드 ///////
   const { id } = useParams();
   const [studyItem, setStudyItem] = useState({ nickname: "", studyname: "" });
 
@@ -56,9 +68,9 @@ export function TodayFocusPage() {
     };
 
     handleStudyItem();
-  }, [id]); // 의존성 배열에 id 추가 이부분이 공통적으로 사용되는데 깔끔하게 하는 방법이 있는지 찾아보기기
+  }, [id]); // 의존성 배열에 id 추가
 
-  /////
+  ///// Navigation 처리 /////
   const navigate = useNavigate();
 
   const goToStudyListPage = () => {
@@ -68,8 +80,8 @@ export function TodayFocusPage() {
   const goToStudyHabitPage = () => {
     navigate(`/study/${id}/todo`);
   };
-  /////
 
+  ///// Return JSX /////
   return (
     <div className="fulll">
       <div className="full">
@@ -91,7 +103,11 @@ export function TodayFocusPage() {
                 min="1"
                 placeholder="분 입력"
                 className="time-input"
-                onChange={(e) => setCustomMinutes(Number(e.target.value))} // 입력값 반영
+                onChange={(e) =>
+                  setCustomMinutes(
+                    e.target.value === "" ? "" : Number(e.target.value)
+                  )
+                } // 입력값 반영
               />
               <button onClick={handleSetTime} className="set-button">
                 시간을 입력하고 <br /> 버튼을 눌러주세요.
