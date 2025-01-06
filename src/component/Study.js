@@ -148,8 +148,7 @@ const StudyBottom = ({ todo }) => {
   const isEmptyObject =
     todo && typeof todo === "object" && Object.keys(todo).length === 0;
   const todoValues = Object.values(todo || {});
-  const currentDay = new Date().getDay();
-
+  // const currentDay = new Date().getDay();
   const getStickerImage = (done) => {
     return done ? sticker_checked : sticker_empty;
   };
@@ -176,7 +175,7 @@ const StudyBottom = ({ todo }) => {
                     {[1, 2, 3, 4, 5, 6, 0].map((day, i) => (
                       <img
                         key={i}
-                        src={getStickerImage(habit.done && currentDay === day)}
+                        src={getStickerImage(habit.done[day] || false)}
                         alt="sticker"
                       />
                     ))}

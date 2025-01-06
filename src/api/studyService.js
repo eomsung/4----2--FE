@@ -156,7 +156,7 @@ export const deleteManyTodoList = async (studyId) => {
   }
 };
 
-export const patchTodoList = async (studyId, todoId, done) => {
+export const patchTodoList = async (studyId, todoId, dayIndex, done) => {
   try {
     const response = await fetch(
       `${BASE_URL}/study/${studyId}/todo/${todoId}`,
@@ -165,7 +165,7 @@ export const patchTodoList = async (studyId, todoId, done) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ done: done }),
+        body: JSON.stringify({ dayIndex: dayIndex, done: done }),
       }
     );
     if (!response.ok) {

@@ -8,12 +8,13 @@ function TodoItem({ text, todoId }) {
   const { todos } = useTodo();
   const { id } = useParams();
   const todo = todos.find((todo) => todo.id === todoId);
-  const [clicked, setClicked] = useState(todo.done); // 여기도 수정해야할듯
+  const currentDay = new Date().getDay();
+  const [clicked, setClicked] = useState(todo.done[currentDay]);
   const handleClick = async () => {
-    await patchTodoList(id, todoId, !clicked);
+    await patchTodoList(id, todoId, currentDay, !clicked);
     setClicked(!clicked); // 클릭 시 상태 토글
+    console.log(clicked);
   };
-
   return (
     <div
       className={`todo-item-block ${clicked ? "clicked" : ""}`}
