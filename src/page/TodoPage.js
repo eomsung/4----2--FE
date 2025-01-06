@@ -28,7 +28,10 @@ const TodoTemplate = () => {
 
         <div className="list-nav">
           <h1 className="list-title">오늘의 습관</h1>
-          <button className="edit-button" onClick={() => setIsModalOpen(true)}>
+          <button
+            className="todo-edit-button"
+            onClick={() => setIsModalOpen(true)}
+          >
             목록 수정
           </button>
         </div>

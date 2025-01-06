@@ -1,7 +1,7 @@
 /* TodoTemplateBlock */
 .todo-template-block {
   width: 1300px;
-  height: 900px;
+  min-height: 900px;
   position: relative;
   background: white;
   border-radius: 16px;
@@ -30,7 +30,7 @@
   text-align: center;
 }
 
-.edit-button {
+.todo-edit-button {
   margin-left: 70px;
   color: rgba(129, 129, 129, 1);
   background-color: rgba(0, 0, 0, 0);

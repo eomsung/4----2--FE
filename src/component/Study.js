@@ -1,13 +1,19 @@
 import "./Study.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
+import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
-import { createEmoticon } from "../api/studyService";
+import {
+  createEmoticon,
+  deleteStudyGroup,
+  getStudyItem,
+} from "../api/studyService";
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
 import VerifyPasswordModal from "./VerifyPasswordModal";
+import { saveRecentStudy, deleteRecentStudy } from "../utils/RecentStudy";
 
 export const Study = ({ item, todo }) => {
   return (
@@ -44,6 +50,32 @@ const StudyTop = ({ item }) => {
 
   const handleEmoticonClick = async (e) => {
     await createEmoticon(id, e.emoji);
+    const studyItem = await getStudyItem(id);
+    const {
+      nickname,
+      studyname,
+      description,
+      point,
+      createdAt,
+      img,
+      Emoticon,
+    } = studyItem || {};
+    const studyData = {
+      id: item.id,
+      nickname,
+      studyname,
+      description,
+      point,
+      createdAt,
+      img,
+      Emoticon,
+    };
+    saveRecentStudy(studyData);
+  };
+
+  const handleDeleteStudy = async (id) => {
+    deleteRecentStudy(id);
+    await deleteStudyGroup(id);
   };
 
   const handleModalShow = (key) => {
@@ -223,6 +255,9 @@ const StudyBottom = ({ todo }) => {
   const isEmptyObject =
     todo && typeof todo === "object" && Object.keys(todo).length === 0;
   const todoValues = Object.values(todo || {});
+  const getStickerImage = (done) => {
+    return done ? sticker_checked : sticker_empty;
+  };
   return (
     <div>
       {!isEmptyObject ? (
@@ -243,13 +278,13 @@ const StudyBottom = ({ todo }) => {
                 <div key={index} className="habit-container">
                   <div className="habit">{habit.text}</div>
                   <div className="skicker">
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
-                    <img src={sticker_empty} alt="sticker_empty" />
+                    {[1, 2, 3, 4, 5, 6, 0].map((day, i) => (
+                      <img
+                        key={i}
+                        src={getStickerImage(habit.done[day] || false)}
+                        alt="sticker"
+                      />
+                    ))}
                   </div>
                 </div>
               ))}

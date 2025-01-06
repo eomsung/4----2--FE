@@ -24,7 +24,7 @@ export const getStudyListItem = async ({
       throw new Error(`Error: response status is ${res.status}`);
     }
 
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
     return { list: [], totalCount: 0 };
@@ -40,7 +40,7 @@ export const getStudyItem = async (id) => {
       throw new Error(`Error: response status is ${res.status}`);
       // 원래 페이지로 돌아가게?
     }
-    return res.json();
+    return await res.json();
   } catch (e) {
     console.log(e.message);
   }
@@ -64,6 +64,20 @@ export const createStudyGroup = async (studyGroupData) => {
   } catch (error) {
     console.error("Error creating study group:", error.message);
     throw error;
+  }
+};
+
+export const deleteStudyGroup = async (id) => {
+  try {
+    const res = await fetch(`${BASE_URL}/study/${id}`, {
+      method: "DELETE",
+    });
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+    }
+    return await res.json();
+  } catch (e) {
+    console.log(e.message);
   }
 };
 
@@ -135,7 +149,7 @@ export const deleteTodoList = async (studyId, todoId) => {
     const data = await response.json();
     return data;
   } catch (e) {
-    console.error("Error creating study group:", e.message);
+    console.error("Error delete study group:", e.message);
     throw e;
   }
 };
@@ -151,8 +165,55 @@ export const deleteManyTodoList = async (studyId) => {
     const data = await response.json();
     return data;
   } catch (e) {
-    console.error("Error creating study group:", e.message);
+    console.error("Error delete study group:", e.message);
     throw e;
+  }
+};
+
+export const patchTodoList = async (studyId, todoId, dayIndex, done) => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/study/${studyId}/todo/${todoId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ dayIndex: dayIndex, done: done }),
+      }
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.error("Error patching study group:", e.message);
+    throw e;
+  }
+};
+
+// studyService.js
+
+export const patchStudyPoint = async (studyGroupId, newPoint) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${studyGroupId}/point`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ point: newPoint }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data; // 성공적으로 포인트가 업데이트된 데이터를 반환
+  } catch (error) {
+    console.error("Error updating study point:", error.message);
+    throw error;
   }
 };
 

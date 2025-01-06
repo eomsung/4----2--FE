@@ -17,7 +17,7 @@ export const StudyListPage = () => {
 
   useEffect(() => {
     handleLoadRecentStudy();
-  }, [studyItems]);
+  }, []);
 
   useEffect(() => {
     handleLoadStudy({
