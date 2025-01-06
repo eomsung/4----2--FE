@@ -1,5 +1,5 @@
 import "./Study.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
@@ -22,12 +22,18 @@ export const Study = ({ item, todo }) => {
 
 const StudyTop = ({ item }) => {
   const { id } = useParams();
+  const nav = useNavigate();
 
   const [showPicker, setShowPicker] = useState(false);
   const [showMoreEmoji, setShowMoreEmoji] = useState(false);
   const buttonRef = useRef(null);
   const emojiRef = useRef(null);
-  const modalRef = useRef();
+  const modalsRef = useRef({
+    edit: null,
+    todo: null,
+    focus: null,
+    delete: null,
+  });
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };
@@ -40,21 +46,69 @@ const StudyTop = ({ item }) => {
     await createEmoticon(id, e.emoji);
   };
 
-  const handleEditClick = (e) => {
-    modalRef.current.showModal();
+  const handleModalShow = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.showModal();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
   };
 
-  const handleModalClose = () => {
-    modalRef.current.close();
+  const handleModalClose = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.close();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
+  };
+
+  const handleModalEditSubmit = () => {
+    nav(`/study/${item.id}/edit`);
+  };
+
+  const handleModalTodoSubmit = () => {
+    //'오늘의 습관' 클릭 -> 제출 버튼시 동작 작성
+  };
+
+  const handleModalFocusSubmit = () => {
+    //'오늘의 집중' 클릭 -> 제출 버튼시 동작 작성
+  };
+
+  const handleModalDeleteSubmit = () => {
+    //'스터디 삭제하기' 클릭 -> 제출 버튼시 동작 작성
   };
 
   return (
     <div className="study-top">
       <VerifyPasswordModal
-        modalRef={modalRef}
+        modalRef={(ref) => (modalsRef.current.edit = ref)}
         item={item}
         btnText={"수정하러 가기"}
-        handleModalClose={handleModalClose}
+        handleModalClose={() => handleModalClose("edit")}
+        onSubmit={handleModalEditSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.todo = ref)}
+        item={item}
+        btnText={"오늘의 습관으로 가기"}
+        handleModalClose={() => handleModalClose("todo")}
+        onSubmit={handleModalTodoSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.focus = ref)}
+        item={item}
+        btnText={"오늘의 집중으로 가기"}
+        handleModalClose={() => handleModalClose("focus")}
+        onSubmit={handleModalFocusSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.delete = ref)}
+        item={item}
+        btnText={"삭제하기"}
+        handleModalClose={() => handleModalClose("delete")}
+        onSubmit={handleModalDeleteSubmit}
       />
       <div className="study-menu">
         <div className="emoji-container">
@@ -124,21 +178,27 @@ const StudyTop = ({ item }) => {
         <div className="study-menu-buttons">
           <div>공유하기</div>
           <div>|</div>
-          <div onClick={handleEditClick}>수정하기</div>
+          <div onClick={() => handleModalShow("edit")}>수정하기</div>
           <div>|</div>
-          <div>스터디 삭제하기</div>
+          <div onClick={() => handleModalShow("delete")}>스터디 삭제하기</div>
         </div>
       </div>
       <div className="study-container">
         <div className="study-tilte-box">
           <div className="study-tilte">{`${item.nickname}의 ${item.studyname}`}</div>
           <div className="study-tilte-buttons">
-            <Link to={`/study/${id}/todo`} className="study-tilte-button">
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("todo")}
+            >
               오늘의 습관
-            </Link>
-            <Link to={`/study/${id}/focus`} className="study-tilte-button">
+            </div>
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("focus")}
+            >
               오늘의 집중
-            </Link>
+            </div>
           </div>
         </div>
         <div className="study-content">

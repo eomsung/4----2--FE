@@ -60,7 +60,7 @@ body {
   padding: 20px 25px;
 }
 
-label {
+.StudyEdit label {
   font-weight: 600;
   font-size: 18px;
   display: block;
@@ -70,7 +70,7 @@ fieldset {
   display: flex;
 }
 
-.edit-button {
+.StudyEdit .edit-button {
   /* display: flex;
     align-items: center; 
     justify-content: center; */
@@ -89,7 +89,7 @@ fieldset {
   z-index: 0;
 }
 
-.edit-button::before {
+.StudyEdit .edit-button::before {
   content: "수정하기";
   /* writing-mode: horizontal-tb; */
   position: absolute;
@@ -154,7 +154,7 @@ fieldset {
   }
 
   .edit-button::before {
-    content: "만들기";
+    content: "수정하기";
     position: absolute;
     top: 13.5px;
     left: 133px;

@@ -1,14 +1,18 @@
 import "./VerifyPasswordModal.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import pwIconOn from "./../img/btn_visibility_on.png";
 import pwIconOff from "./../img/btn_visibility_off.png";
 
-const VerifyPasswordModal = ({ modalRef, item, btnText, handleModalClose }) => {
+const VerifyPasswordModal = ({
+  modalRef,
+  item,
+  btnText,
+  handleModalClose,
+  onSubmit,
+}) => {
   const [inputPassword, setInputPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const nav = useNavigate();
 
   const validatePassword = () => {
     if (item.password !== inputPassword)
@@ -25,7 +29,7 @@ const VerifyPasswordModal = ({ modalRef, item, btnText, handleModalClose }) => {
     if (nextErrorMsg) {
       setErrorMsg(() => nextErrorMsg);
     } else {
-      nav(`/study/${item.id}/edit`);
+      onSubmit();
     }
   };
 
