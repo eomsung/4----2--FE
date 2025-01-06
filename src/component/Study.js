@@ -1,5 +1,5 @@
 import "./Study.css";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
 import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
@@ -12,6 +12,7 @@ import {
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
+import VerifyPasswordModal from "./VerifyPasswordModal";
 import { saveRecentStudy, deleteRecentStudy } from "../utils/RecentStudy";
 
 export const Study = ({ item, todo }) => {
@@ -27,11 +28,18 @@ export const Study = ({ item, todo }) => {
 
 const StudyTop = ({ item }) => {
   const { id } = useParams();
+  const nav = useNavigate();
 
   const [showPicker, setShowPicker] = useState(false);
   const [showMoreEmoji, setShowMoreEmoji] = useState(false);
   const buttonRef = useRef(null);
   const emojiRef = useRef(null);
+  const modalsRef = useRef({
+    edit: null,
+    todo: null,
+    focus: null,
+    delete: null,
+  });
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };
@@ -51,7 +59,7 @@ const StudyTop = ({ item }) => {
       createdAt,
       img,
       Emoticon,
-    } = studyItem;
+    } = studyItem || {};
     const studyData = {
       id: item.id,
       nickname,
@@ -70,8 +78,70 @@ const StudyTop = ({ item }) => {
     await deleteStudyGroup(id);
   };
 
+  const handleModalShow = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.showModal();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
+  };
+
+  const handleModalClose = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.close();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
+  };
+
+  const handleModalEditSubmit = () => {
+    nav(`/study/${item.id}/edit`);
+  };
+
+  const handleModalTodoSubmit = () => {
+    //'오늘의 습관' 클릭 -> 제출 버튼시 동작 작성
+  };
+
+  const handleModalFocusSubmit = () => {
+    //'오늘의 집중' 클릭 -> 제출 버튼시 동작 작성
+  };
+
+  const handleModalDeleteSubmit = () => {
+    //'스터디 삭제하기' 클릭 -> 제출 버튼시 동작 작성
+  };
+
   return (
     <div className="study-top">
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.edit = ref)}
+        item={item}
+        btnText={"수정하러 가기"}
+        handleModalClose={() => handleModalClose("edit")}
+        onSubmit={handleModalEditSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.todo = ref)}
+        item={item}
+        btnText={"오늘의 습관으로 가기"}
+        handleModalClose={() => handleModalClose("todo")}
+        onSubmit={handleModalTodoSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.focus = ref)}
+        item={item}
+        btnText={"오늘의 집중으로 가기"}
+        handleModalClose={() => handleModalClose("focus")}
+        onSubmit={handleModalFocusSubmit}
+      />
+      <VerifyPasswordModal
+        modalRef={(ref) => (modalsRef.current.delete = ref)}
+        item={item}
+        btnText={"삭제하기"}
+        handleModalClose={() => handleModalClose("delete")}
+        onSubmit={handleModalDeleteSubmit}
+      />
       <div className="study-menu">
         <div className="emoji-container">
           <div className="tag-box ">
@@ -140,24 +210,27 @@ const StudyTop = ({ item }) => {
         <div className="study-menu-buttons">
           <div>공유하기</div>
           <div>|</div>
-          <div>수정하기</div>
+          <div onClick={() => handleModalShow("edit")}>수정하기</div>
           <div>|</div>
-          <div className="delete-button" onClick={() => handleDeleteStudy(id)}>
-            스터디 삭제하기
-          </div>
-          {/* 비밀번호 모달 구현 되면 삭제 후 홈페이지로 이동하게 수정 */}
+          <div onClick={() => handleModalShow("delete")}>스터디 삭제하기</div>
         </div>
       </div>
       <div className="study-container">
         <div className="study-tilte-box">
           <div className="study-tilte">{`${item.nickname}의 ${item.studyname}`}</div>
           <div className="study-tilte-buttons">
-            <Link to={`/study/${id}/todo`} className="study-tilte-button">
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("todo")}
+            >
               오늘의 습관
-            </Link>
-            <Link to={`/study/${id}/focus`} className="study-tilte-button">
+            </div>
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("focus")}
+            >
               오늘의 집중
-            </Link>
+            </div>
           </div>
         </div>
         <div className="study-content">
