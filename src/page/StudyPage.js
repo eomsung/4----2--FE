@@ -12,7 +12,7 @@ export const StudyPage = () => {
   useEffect(() => {
     const handleStudyItem = async () => {
       const studyitem = await getStudyItem(id);
-      setStudyItem(studyitem);
+      setStudyItem(studyitem || { Emoticon: [] });
     };
 
     const handleTodoList = async () => {
