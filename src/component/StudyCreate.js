@@ -86,7 +86,7 @@ function StudyCreate() {
 
       if (Object.keys(newErrors).length === 0) {
         const result = await createStudyGroup(formData);
-        console.log("Study group created:", result);
+        // console.log("Study group created:", result);
         navigate(`/study/${result.id}`);
       }
     } catch (error) {

@@ -17,7 +17,7 @@ export const StudyListPage = () => {
 
   useEffect(() => {
     handleLoadRecentStudy();
-  }, [studyItems]);
+  }, []);
 
   useEffect(() => {
     handleLoadStudy({
@@ -36,6 +36,7 @@ export const StudyListPage = () => {
 
   const handleLoadRecentStudy = async () => {
     const recentStudy = getRecentStudies();
+    console.log(recentStudy);
     setStudyRecentItems({ list: recentStudy });
   };
 

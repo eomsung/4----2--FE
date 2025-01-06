@@ -4,11 +4,15 @@ import sticker_empty from "../img/assets/sticker_empty.svg";
 import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
-import { createEmoticon, deleteStudyGroup } from "../api/studyService";
+import {
+  createEmoticon,
+  deleteStudyGroup,
+  getStudyItem,
+} from "../api/studyService";
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
-import { deleteRecentStudy } from "../utils/RecentStudy";
+import { saveRecentStudy, deleteRecentStudy } from "../utils/RecentStudy";
 
 export const Study = ({ item, todo }) => {
   return (
@@ -38,6 +42,27 @@ const StudyTop = ({ item }) => {
 
   const handleEmoticonClick = async (e) => {
     await createEmoticon(id, e.emoji);
+    const studyItem = await getStudyItem(id);
+    const {
+      nickname,
+      studyname,
+      description,
+      point,
+      createdAt,
+      img,
+      Emoticon,
+    } = studyItem;
+    const studyData = {
+      id: item.id,
+      nickname,
+      studyname,
+      description,
+      point,
+      createdAt,
+      img,
+      Emoticon,
+    };
+    saveRecentStudy(studyData);
   };
 
   const handleDeleteStudy = async (id) => {

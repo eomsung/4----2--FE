@@ -44,7 +44,7 @@ export const StudyItem = ({ item }) => {
         </div>
         <div className="tag-box">
           {item.Emoticon &&
-            item.Emoticon.map((emoticon, index) => (
+            item.Emoticon.slice(0, 3).map((emoticon, index) => (
               <div key={index} className="tag">
                 {`${emoticon.emoticons} ${emoticon.count}`}
               </div>
