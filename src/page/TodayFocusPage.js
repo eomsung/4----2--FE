@@ -5,21 +5,47 @@ import { getStudyItem } from "../api/studyService";
 import { useNavigate } from "react-router-dom";
 
 export function TodayFocusPage() {
-  const [timeLeft, setTimeLeft] = useState(1800); // 초기 타이머 시간
+  const INITIAL_TIME = 1800; // 초기 타이머 시간 (30분)
+  const POINT_INCREMENT = 10; // 포인트 증가량
+  let point_cnt = 0;
+
+  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME); // 초기 타이머 시간
   const [isRunning, setIsRunning] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false); // 입력창 표시 여부
   const [customMinutes, setCustomMinutes] = useState(""); // 사용자 입력 시간 (빈 문자열로 초기화)
   const [pauseMessage, setPauseMessage] = useState("");
+  const [myPoint, setPoint] = useState(0);
 
   useEffect(() => {
     let timer;
     if (isRunning) {
       timer = setInterval(() => {
-        setTimeLeft((prevTime) => prevTime - 1); // 음수로도 계속 감소
+        setTimeLeft((prevTime) => {
+          if (prevTime - 1 < 0) {
+            // timeLeft가 0보다 작아지면 실행
+            point_cnt++;
+
+            handleTimeOut();
+            return INITIAL_TIME; // 초기값으로 복귀
+          }
+          return prevTime - 1;
+        });
       }, 1000);
     }
     return () => clearInterval(timer); // 타이머 정리
   }, [isRunning]);
+
+  const handleTimeOut = () => {
+    setIsRunning(false); // 타이머 멈춤
+    setPoint((prevPoint) => {
+      if (point_cnt > 0) {
+        point_cnt = 0;
+        return prevPoint;
+      }
+      const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
+      return newPoint;
+    });
+  };
 
   // 시간 형식 변환
   const formatTime = (time) => {
@@ -40,12 +66,11 @@ export function TodayFocusPage() {
   };
 
   const handleReset = () => {
-    setTimeLeft(0);
+    setTimeLeft(INITIAL_TIME);
     setIsRunning(false);
     setIsInputVisible(false); // 입력창 숨김
   };
 
-  ////// 업데이트된 부분 시작 //////
   useEffect(() => {
     if (isInputVisible) {
       setCustomMinutes(""); // 입력값 초기화 (빈 문자열로 설정)
@@ -55,7 +80,6 @@ export function TodayFocusPage() {
       }
     }
   }, [isInputVisible]);
-  ////// 업데이트된 부분 끝 //////
 
   ////// Study API 데이터 로드 ///////
   const { id } = useParams();
@@ -93,7 +117,7 @@ export function TodayFocusPage() {
         </button>
         <h2 className="roqkf">{`${studyItem.nickname}의 ${studyItem.studyname}`}</h2>
         <p className="point-focus">현재까지 획득한 포인트</p>
-        <button className="pointButton">🌱300획득</button>
+        <button className="pointButton">🌱{myPoint}획득</button>
         <div className="container-focus">
           {isInputVisible ? (
             <div className="time-input-container">
