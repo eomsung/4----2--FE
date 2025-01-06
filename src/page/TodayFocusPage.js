@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./TodayFocusPage.css";
 import { useParams } from "react-router-dom";
-import { getStudyItem } from "../api/studyService";
+import { getStudyItem, patchStudyPoint } from "../api/studyService"; // patchStudyPoint 임포트
 import { useNavigate } from "react-router-dom";
 
 export function TodayFocusPage() {
@@ -35,7 +35,7 @@ export function TodayFocusPage() {
     return () => clearInterval(timer); // 타이머 정리
   }, [isRunning]);
 
-  const handleTimeOut = () => {
+  const handleTimeOut = async () => {
     setIsRunning(false); // 타이머 멈춤
     setPoint((prevPoint) => {
       if (point_cnt > 0) {
@@ -43,6 +43,8 @@ export function TodayFocusPage() {
         return prevPoint;
       }
       const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
+      // 포인트 업데이트 후 서버에 반영
+      patchStudyPoint(studyItem.id, newPoint); // 서버로 포인트 업데이트
       return newPoint;
     });
   };
@@ -83,12 +85,17 @@ export function TodayFocusPage() {
 
   ////// Study API 데이터 로드 ///////
   const { id } = useParams();
-  const [studyItem, setStudyItem] = useState({ nickname: "", studyname: "" });
+  const [studyItem, setStudyItem] = useState({
+    nickname: "",
+    studyname: "",
+    point: 0,
+  });
 
   useEffect(() => {
     const handleStudyItem = async () => {
       const studyitem = await getStudyItem(id);
       setStudyItem(studyitem);
+      setPoint(studyitem.point); // 초기 포인트 설정
     };
 
     handleStudyItem();

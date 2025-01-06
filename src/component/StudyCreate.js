@@ -15,6 +15,7 @@ function StudyCreate() {
     img: "",
     password: "",
     passwordConfirm: "",
+    point: 0,
   });
   const [errors, setErrors] = useState({
     nickname: "",
@@ -23,6 +24,7 @@ function StudyCreate() {
     img: "",
     password: "",
     passwordConfirm: "",
+    point: 0,
   });
   const [showPassword, setShowPassword] = useState(false);
 
