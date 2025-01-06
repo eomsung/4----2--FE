@@ -7,7 +7,7 @@ function TodoHead({ item }) {
   const navigate = useNavigate();
   const { id } = useParams();
   const goToStudyListPage = () => {
-    navigate("/");
+    navigate(`/study/${id}`);
   };
 
   const goToStudyFocusPage = () => {
