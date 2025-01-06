@@ -99,7 +99,7 @@ function StudyCreate() {
       <h2 className="page-title">스터디 만들기</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label for="nickname">닉네임</label>
+          <label htmlFor="nickname">닉네임</label>
           <input
             id="nickname"
             type="text"
@@ -115,7 +115,7 @@ function StudyCreate() {
           )}
         </div>
         <div className="input-container">
-          <label for="study-title">스터디 이름</label>
+          <label htmlFor="study-title">스터디 이름</label>
           <input
             id="study-title"
             type="text"
@@ -130,7 +130,7 @@ function StudyCreate() {
           )}
         </div>
         <div className="input-container">
-          <label for="self-intro">소개</label>
+          <label htmlFor="self-intro">소개</label>
           <textarea
             id="self-intro"
             name="description"
@@ -159,7 +159,7 @@ function StudyCreate() {
           {errors.img && <div className="error-msg">*{errors.img}</div>}
         </div>
         <div className="input-container input-container-password">
-          <label for="password">비밀번호</label>
+          <label htmlFor="password">비밀번호</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password"
@@ -180,7 +180,7 @@ function StudyCreate() {
           />
         </div>
         <div className="input-container input-container-password">
-          <label for="password-confirm">비밀번호 확인</label>
+          <label htmlFor="password-confirm">비밀번호 확인</label>
           <input
             type={showPassword ? "text" : "password"}
             id="password-confirm"
