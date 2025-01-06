@@ -22,7 +22,7 @@ export const StudyPage = () => {
 
     handleStudyItem();
     handleTodoList();
-  }, [id]); // 의존성 배열에 id만 추가
+  }, [id]); // 의존성 배열에 id만 추가, studyItem 이거 추가해야 이모티콘이 바로바로 보임
 
   return (
     <div className="study-page">
