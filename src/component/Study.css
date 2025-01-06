@@ -101,7 +101,7 @@
 /* study bottom  */
 .study-bottom {
   width: 112rem;
-  height: 51.1rem;
+  min-height: 51.1rem;
   border-radius: 2rem;
   border: 0.1rem solid #dddddd;
   padding: 2.4rem;
@@ -112,7 +112,7 @@
 }
 .study-bottom-wrap {
   width: 107.2rem;
-  height: 41rem;
+  min-height: 41rem;
   margin-top: 3rem;
   display: flex;
   flex-direction: column;
