@@ -11,18 +11,26 @@ export const StudyPage = () => {
 
   useEffect(() => {
     const handleStudyItem = async () => {
-      const studyitem = await getStudyItem(id);
-      setStudyItem(studyitem || { Emoticon: [] });
+      try {
+        const studyitem = await getStudyItem(id);
+        setStudyItem(studyitem || { Emoticon: [] });
+      } catch (error) {
+        console.error("Failed to fetch study item:", error);
+      }
     };
 
     const handleTodoList = async () => {
-      const todolist = await getTodoList(id);
-      setTodoList(todolist);
+      try {
+        const todolist = await getTodoList(id);
+        setTodoList(todolist);
+      } catch (error) {
+        console.error("Failed to fetch todo list:", error);
+      }
     };
 
     handleStudyItem();
     handleTodoList();
-  }, [id, studyItem.Emoticon]); // 의존성 배열에 id만 추가, studyItem 이거 추가해야 이모티콘이 바로바로 보임
+  }, [id]); // 의존성 배열에 id만 추가, studyItem 이거 추가해야 이모티콘이 바로바로 보임
 
   return (
     <div className="study-page">

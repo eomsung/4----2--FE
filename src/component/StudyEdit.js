@@ -1,30 +1,36 @@
-import { useState } from "react";
-import { createStudyGroup } from "../api/studyService";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getStudyItem, patchStudyGroup } from "../api/studyService";
+import { useNavigate, useParams } from "react-router-dom";
 import "./StudyEdit.css";
 import BackgroundOption from "./BackgroundOption";
-import pwIconOn from "./../img/btn_visibility_on.png";
-import pwIconOff from "./../img/btn_visibility_off.png";
-
+import { saveRecentStudy } from "../utils/RecentStudy";
 const StudyEdit = () => {
   const navigate = useNavigate();
+
+  const { id } = useParams();
+
   const [formData, setFormData] = useState({
     nickname: "",
     studyname: "",
     description: "",
     img: "",
-    password: "",
-    passwordConfirm: "",
   });
   const [errors, setErrors] = useState({
     nickname: "",
     studyname: "",
     description: "",
     img: "",
-    password: "",
-    passwordConfirm: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const initialStudyItem = async () => {
+      const studyItem = await getStudyItem(id);
+      const { nickname, studyname, description, img } = studyItem || {};
+      setFormData({ nickname, studyname, description, img });
+    };
+
+    initialStudyItem();
+  }, [id]);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -39,13 +45,6 @@ const StudyEdit = () => {
         return "";
       case "img":
         if (!value) return "배경을 선택해주세요";
-        return "";
-      case "password":
-        if (!value) return "비밀번호를 입력해주세요";
-        return "";
-      case "passwordConfirm":
-        if (!value) return "비밀번호를 다시 한번 입력해주세요.";
-        if (formData.password !== value) return "비밀번호가 일치하지 않습니다.";
         return "";
       default:
         return "";
@@ -63,10 +62,6 @@ const StudyEdit = () => {
     }));
   };
 
-  const handlePasswordToggle = () => {
-    setShowPassword((prevState) => !prevState);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = {};
@@ -82,12 +77,33 @@ const StudyEdit = () => {
       setErrors(newErrors);
 
       if (Object.keys(newErrors).length === 0) {
-        const result = await createStudyGroup(formData);
-        console.log("Study group created:", result);
-        navigate(`/study/${result.id}`);
+        const result = await patchStudyGroup(id, formData); // 여기를 수정하면 됨
+        console.log("Study group patch:", result);
+        const studyItem = await getStudyItem(id);
+        const {
+          nickname,
+          studyname,
+          description,
+          point,
+          createdAt,
+          img,
+          Emoticon,
+        } = studyItem || {};
+        const studyData = {
+          id,
+          nickname,
+          studyname,
+          description,
+          point,
+          createdAt,
+          img,
+          Emoticon,
+        };
+        saveRecentStudy(studyData);
+        navigate(`/study/${id}`);
       }
     } catch (error) {
-      console.log("Failed to create study group:", error.message);
+      console.log("Failed to patch study group:", error.message);
     }
   };
 
@@ -154,48 +170,6 @@ const StudyEdit = () => {
             })}
           </fieldset>
           {errors.img && <div className="error-msg">*{errors.img}</div>}
-        </div>
-        <div className="input-container input-container-password">
-          <label for="password">비밀번호</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="비밀번호를 입력해 주세요"
-            className={errors.password ? "error-input" : ""}
-          />
-          {errors.password && (
-            <div className="error-msg">*{errors.password}</div>
-          )}
-          <img
-            src={showPassword ? pwIconOn : pwIconOff}
-            className="btn-showPassword"
-            onClick={handlePasswordToggle}
-            alt="password show icon"
-          />
-        </div>
-        <div className="input-container input-container-password">
-          <label for="password-confirm">비밀번호 확인</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password-confirm"
-            name="passwordConfirm"
-            value={formData.passwordConfirm}
-            onChange={handleChange}
-            placeholder="비밀번호를 다시 한번 입력해 주세요"
-            className={errors.passwordConfirm ? "error-input" : ""}
-          />
-          {errors.passwordConfirm && (
-            <div className="error-msg">*{errors.passwordConfirm}</div>
-          )}
-          <img
-            src={showPassword ? pwIconOn : pwIconOff}
-            className="btn-showPassword"
-            onClick={handlePasswordToggle}
-            alt="password show icon"
-          />
         </div>
         <button type="submit" className="create-button">
           수정하기

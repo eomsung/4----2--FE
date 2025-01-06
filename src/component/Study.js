@@ -1,5 +1,5 @@
 import "./Study.css";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
 import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
@@ -76,6 +76,7 @@ const StudyTop = ({ item }) => {
   const handleDeleteStudy = async (id) => {
     deleteRecentStudy(id);
     await deleteStudyGroup(id);
+    nav(`/`);
   };
 
   const handleModalShow = (key) => {
@@ -101,15 +102,15 @@ const StudyTop = ({ item }) => {
   };
 
   const handleModalTodoSubmit = () => {
-    //'오늘의 습관' 클릭 -> 제출 버튼시 동작 작성
+    nav(`/study/${item.id}/todo`);
   };
 
   const handleModalFocusSubmit = () => {
-    //'오늘의 집중' 클릭 -> 제출 버튼시 동작 작성
+    nav(`/study/${item.id}/focus`);
   };
 
   const handleModalDeleteSubmit = () => {
-    //'스터디 삭제하기' 클릭 -> 제출 버튼시 동작 작성
+    handleDeleteStudy(item.id);
   };
 
   return (
@@ -208,9 +209,11 @@ const StudyTop = ({ item }) => {
         </div>
 
         <div className="study-menu-buttons">
-          <div>공유하기</div>
+          <div className="text-color">공유하기</div>
           <div>|</div>
-          <div onClick={() => handleModalShow("edit")}>수정하기</div>
+          <div className="text-color" onClick={() => handleModalShow("edit")}>
+            수정하기
+          </div>
           <div>|</div>
           <div onClick={() => handleModalShow("delete")}>스터디 삭제하기</div>
         </div>
