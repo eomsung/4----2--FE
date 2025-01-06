@@ -1,3 +1,5 @@
+import { getStudyItemId } from "../api/studyService";
+
 const RECENTKEY = "recentKey";
 const MAXNUM = 3;
 export const saveRecentStudy = (study) => {
@@ -27,5 +29,21 @@ export const deleteRecentStudy = (id) => {
     localStorage.setItem(RECENTKEY, JSON.stringify(updatedStudy));
   } catch (error) {
     console.error("Error deleting recent study:", error);
+  }
+};
+
+export const validateRecentStudies = async () => {
+  try {
+    const recentStudy = JSON.parse(localStorage.getItem(RECENTKEY)) || [];
+    const validStudyIds = await getStudyItemId();
+    const filteredStudy = recentStudy.filter((study) =>
+      validStudyIds.some((item) => item.id === study.id)
+    );
+
+    localStorage.setItem(RECENTKEY, JSON.stringify(filteredStudy));
+
+    console.log("Recent studies validated!");
+  } catch (error) {
+    console.error("Error validating recent studies:", error);
   }
 };

@@ -3,7 +3,10 @@ import { getStudyListItem } from "../api/studyService.js";
 import { StudyRecentList } from "../component/StudyRecentList.js";
 import { StudyList } from "../component/StudyList.js";
 import "./StudyListPage.css";
-import { getRecentStudies } from "../utils/RecentStudy.js";
+import {
+  getRecentStudies,
+  validateRecentStudies,
+} from "../utils/RecentStudy.js";
 const DEFAULTPAGE = 1;
 const DEFAULTPAGESIZE = 6;
 const DEFAULTORDER = "recent";
@@ -16,6 +19,7 @@ export const StudyListPage = () => {
   const [totalCount, setTotalCount] = useState(1);
 
   useEffect(() => {
+    // validateRecentStudies();
     handleLoadRecentStudy();
   }, []);
 

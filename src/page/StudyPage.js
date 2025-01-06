@@ -11,13 +11,21 @@ export const StudyPage = () => {
 
   useEffect(() => {
     const handleStudyItem = async () => {
-      const studyitem = await getStudyItem(id);
-      setStudyItem(studyitem || { Emoticon: [] });
+      try {
+        const studyitem = await getStudyItem(id);
+        setStudyItem(studyitem || { Emoticon: [] });
+      } catch (error) {
+        console.error("Failed to fetch study item:", error);
+      }
     };
 
     const handleTodoList = async () => {
-      const todolist = await getTodoList(id);
-      setTodoList(todolist);
+      try {
+        const todolist = await getTodoList(id);
+        setTodoList(todolist);
+      } catch (error) {
+        console.error("Failed to fetch todo list:", error);
+      }
     };
 
     handleStudyItem();
