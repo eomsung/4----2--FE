@@ -209,9 +209,11 @@ const StudyTop = ({ item }) => {
         </div>
 
         <div className="study-menu-buttons">
-          <div>공유하기</div>
+          <div className="text-color">공유하기</div>
           <div>|</div>
-          <div onClick={() => handleModalShow("edit")}>수정하기</div>
+          <div className="text-color" onClick={() => handleModalShow("edit")}>
+            수정하기
+          </div>
           <div>|</div>
           <div onClick={() => handleModalShow("delete")}>스터디 삭제하기</div>
         </div>
