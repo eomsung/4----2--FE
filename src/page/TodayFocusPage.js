@@ -105,7 +105,7 @@ export function TodayFocusPage() {
   const navigate = useNavigate();
 
   const goToStudyListPage = () => {
-    navigate("/");
+    navigate(`/study/${id}`);
   };
 
   const goToStudyHabitPage = () => {
