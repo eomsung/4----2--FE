@@ -48,7 +48,7 @@ export const getStudyItem = async (id) => {
 
 export const getStudyItemId = async () => {
   try {
-    const res = await fetch(`${BASE_URL}/studyids}`, {
+    const res = await fetch(`${BASE_URL}/studyids`, {
       method: "GET",
     });
     if (!res.ok) {

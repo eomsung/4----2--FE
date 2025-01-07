@@ -36,13 +36,14 @@ export const validateRecentStudies = async () => {
   try {
     const recentStudy = JSON.parse(localStorage.getItem(RECENTKEY)) || [];
     const validStudyIds = await getStudyItemId();
+    // console.log(validStudyIds);
     const filteredStudy = recentStudy.filter((study) =>
       validStudyIds.some((item) => item.id === study.id)
     );
 
     localStorage.setItem(RECENTKEY, JSON.stringify(filteredStudy));
 
-    console.log("Recent studies validated!");
+    // console.log("Recent studies validated!");
   } catch (error) {
     console.error("Error validating recent studies:", error);
   }

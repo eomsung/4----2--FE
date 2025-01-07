@@ -23,6 +23,7 @@ export const StudyItem = ({ item }) => {
     saveRecentStudy(studyData);
     navigate(`/study/${item.id}`);
   };
+
   return (
     <div
       className={`study-item-box study-item-box-${item.img}`}

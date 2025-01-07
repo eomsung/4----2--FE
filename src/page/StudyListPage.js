@@ -19,7 +19,7 @@ export const StudyListPage = () => {
   const [totalCount, setTotalCount] = useState(1);
 
   useEffect(() => {
-    // validateRecentStudies();
+    validateRecentStudies();
     handleLoadRecentStudy();
   }, []);
 
