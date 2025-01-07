@@ -7,7 +7,6 @@ import ic_point from "../img/assets/ic_point.svg";
 export function TodayFocusPage() {
   const INITIAL_TIME = 1800; // 초기 타이머 시간 (30분)
   const POINT_INCREMENT = 3; // 포인트 증가량
-  let point_cnt = 0;
 
   const [timeLeft, setTimeLeft] = useState(INITIAL_TIME); // 초기 타이머 시간
   const [isRunning, setIsRunning] = useState(false);
@@ -15,39 +14,7 @@ export function TodayFocusPage() {
   const [customMinutes, setCustomMinutes] = useState(""); // 사용자 입력 시간 (빈 문자열로 초기화)
   const [pauseMessage, setPauseMessage] = useState("");
   const [myPoint, setPoint] = useState(0);
-
-  useEffect(() => {
-    let timer;
-    if (isRunning) {
-      timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          if (prevTime - 1 < 0) {
-            // timeLeft가 0보다 작아지면 실행
-            point_cnt++;
-
-            handleTimeOut();
-            return INITIAL_TIME; // 초기값으로 복귀
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer); // 타이머 정리
-  }, [isRunning]);
-
-  const handleTimeOut = async () => {
-    setIsRunning(false); // 타이머 멈춤
-    setPoint((prevPoint) => {
-      if (point_cnt > 0) {
-        point_cnt = 0;
-        return prevPoint;
-      }
-      const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
-      // 포인트 업데이트 후 서버에 반영
-      patchStudyPoint(studyItem.id, newPoint); // 서버로 포인트 업데이트
-      return newPoint;
-    });
-  };
+  const [pointCnt, setPointCnt] = useState(0);
 
   // 시간 형식 변환
   const formatTime = (time) => {
@@ -111,6 +78,37 @@ export function TodayFocusPage() {
   const goToStudyHabitPage = () => {
     navigate(`/study/${id}/todo`);
   };
+  useEffect(() => {
+    let timer;
+    if (isRunning) {
+      timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          if (prevTime - 1 < 0) {
+            // studyItem이 유효한지 확인
+            if (studyItem && studyItem.id) {
+              setIsRunning(false); // 타이머 멈춤
+              setPoint((prevPoint) => {
+                if (pointCnt > 0) {
+                  setPointCnt(1);
+                  return prevPoint;
+                }
+                const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
+                // 포인트 업데이트 후 서버에 반영
+                const id = studyItem.id;
+
+                patchStudyPoint(id, newPoint);
+
+                return newPoint;
+              });
+            }
+            return INITIAL_TIME; // 초기값으로 복귀
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer); // 타이머 정리
+  }, [isRunning, pointCnt, studyItem]); // studyItem도 의존성에 포함
 
   ///// Return JSX /////
   return (
