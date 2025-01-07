@@ -22,17 +22,20 @@
   margin: 1px auto;
   border-radius: 30px;
 }
+
 .roqkf {
   position: relative;
   font-size: 30px;
   right: 500px;
   bottom: 90px;
 }
+
 .point-focus {
   position: relative;
   right: 510px;
   bottom: 60px;
 }
+
 .pointButton {
   position: relative;
   right: 540px;
@@ -71,9 +74,11 @@
   right: -570px;
   top: 10px;
 }
+
 .home:hover {
   background-color: #94ad8b;
 }
+
 .todayhome {
   position: relative;
   width: 144px;
@@ -86,9 +91,11 @@
   right: -440px;
   top: -37px;
 }
+
 .todayhome:hover {
   background-color: #94ad8b;
 }
+
 .set-button {
   position: relative;
   background-color: #578246;
@@ -101,6 +108,7 @@
   right: 70px;
   bottom: 100px;
 }
+
 .set-button:hover {
   background-color: #94ad8b;
 }
@@ -117,6 +125,7 @@
   top: -30px;
   border-radius: 30px;
 }
+
 .btn {
   position: relative;
   width: 333px;
@@ -129,9 +138,11 @@
   left: 10px;
   top: 86px;
 }
+
 .btn:hover {
   background-color: #578246;
 }
+
 .title {
   position: relative;
   top: -30px;
@@ -164,6 +175,7 @@
 .button:hover {
   background-color: #94ad8b;
 }
+
 /* }
 .buttons {
   display: flex;
@@ -202,6 +214,7 @@
   text-align: center;
   border: solid 1px rgb(179, 175, 175);
 }
+
 .pause-message {
   display: flex;
   position: absolute;
@@ -215,4 +228,30 @@
   border-radius: 20px;
   color: red;
   top: 550px;
+}
+
+.warning-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  text-align: center;
+  animation: fadeInOut 5s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
