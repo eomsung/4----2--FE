@@ -47,9 +47,11 @@ const StudyTop = ({ item }) => {
   const toggleMoreEmoji = () => {
     setShowMoreEmoji(!showMoreEmoji);
   };
-
+  const [loading, setLoading] = useState(false);
   const handleEmoticonClick = async (e) => {
+    if (loading) return;
     try {
+      setLoading(true);
       await createEmoticon(id, e.emoji);
       const studyItem = await getStudyItem(id);
       const {
@@ -74,6 +76,8 @@ const StudyTop = ({ item }) => {
       saveRecentStudy(studyData);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
