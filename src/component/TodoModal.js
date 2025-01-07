@@ -21,6 +21,7 @@ const TodoModal = ({ onClose }) => {
   }, [todos]);
 
   const handleAdd = async () => {
+    console.log(inputText.trim());
     if (inputText.trim()) {
       try {
         const newTodo = await createTodoList(id, inputText.trim());
