@@ -24,9 +24,13 @@
 }
 .roqkf {
   position: relative;
+  width: 100%;
   font-size: 30px;
-  right: 420px;
-  bottom: 90px;
+  left: 50px;
+  bottom: 30px;
+  /* right: 580px;
+  bottom: 90px; */
+  text-align: left;
 }
 .point-focus {
   position: relative;

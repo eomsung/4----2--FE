@@ -65,46 +65,46 @@ export function TodayFocusPage() {
     navigate("/");
   };
 
-  const goToStudyHabitPage = () => {
-    navigate(`/study/${id}/todo`);
-  };
-  /////
+  // const goToStudyHabitPage = () => {
+  //   navigate(`/study/${id}/todo`);
+  // };
+  // /////
 
   return (
-    <div className="fulll">
-      <div className="full">
-        <button className="home" onClick={goToStudyListPage}>
+    <div className='fulll'>
+      <div className='full'>
+        <button className='home' onClick={goToStudyListPage}>
           홈 &nbsp; ❭
         </button>
-        <button className="todayhome" onClick={goToStudyHabitPage}>
+        <button className='todayhome' onClick={goToStudyHabitPage}>
           오늘의 습관 &nbsp;❭
         </button>
-        <h2 className="roqkf">{`${studyItem.nickname}의 ${studyItem.studyname}`}</h2>
-        <p className="point-focus">현재까지 획득한 포인트</p>
-        <button className="pointButton">🌱300획득</button>
-        <div className="container-focus">
+        <h2 className='roqkf'>{`${studyItem.nickname}의 ${studyItem.studyname}`}</h2>
+        <p className='point-focus'>현재까지 획득한 포인트</p>
+        <button className='pointButton'>🌱300획득</button>
+        <div className='container-focus'>
           {isInputVisible ? (
-            <div className="time-input-container">
+            <div className='time-input-container'>
               <input
-                type="number"
+                type='number'
                 value={customMinutes}
-                min="1"
-                placeholder="분 입력"
-                className="time-input"
+                min='1'
+                placeholder='분 입력'
+                className='time-input'
                 onChange={(e) => setCustomMinutes(Number(e.target.value))} // 입력값 반영
               />
-              <button onClick={handleSetTime} className="set-button">
+              <button onClick={handleSetTime} className='set-button'>
                 시간을 입력하고 <br /> 버튼을 눌러주세요.
               </button>
             </div>
           ) : (
             <>
-              <h3 className="title">오늘의 집중</h3>
-              <button onClick={() => setIsInputVisible(true)} className="aa">
+              <h3 className='title'>오늘의 집중</h3>
+              <button onClick={() => setIsInputVisible(true)} className='aa'>
                 ⏱&nbsp;25:00
               </button>
               <div
-                className="timer"
+                className='timer'
                 style={{
                   color:
                     timeLeft < 0 ? "red" : timeLeft < 600 ? "red" : "black", // 글씨 색 변경
@@ -119,18 +119,18 @@ export function TodayFocusPage() {
                   setPauseMessage("🚨집중이 중단되었습니다.");
                   setTimeout(() => setPauseMessage(""), 5000);
                 }}
-                className="BBB"
+                className='BBB'
               >
                 ⦷
               </button>
               {pauseMessage && (
-                <div className="pause-message">{pauseMessage}</div>
+                <div className='pause-message'>{pauseMessage}</div>
               )}
-              <button onClick={() => setIsRunning(true)} className="btn">
+              <button onClick={() => setIsRunning(true)} className='btn'>
                 ▶&nbsp;&nbsp;Start!&nbsp;&nbsp;&nbsp;
               </button>
 
-              <button onClick={handleReset} className="button">
+              <button onClick={handleReset} className='button'>
                 ↺
               </button>
             </>
