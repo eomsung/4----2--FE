@@ -1,14 +1,19 @@
 import "./Study.css";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import sticker_empty from "../img/assets/sticker_empty.svg";
 import sticker_checked from "../img/assets/sticker_light_green_100_01.svg";
 import EmojiPicker from "emoji-picker-react";
 import React, { useState, useRef } from "react";
-import { createEmoticon, deleteStudyGroup } from "../api/studyService";
+import {
+  createEmoticon,
+  deleteStudyGroup,
+  getStudyItem,
+} from "../api/studyService";
 import ic_smilce from "../img/assets/ic_smile.svg";
 import ic_point from "../img/assets/ic_point.svg";
 import ic_plus from "../img/assets/ic_plus.svg";
-import { deleteRecentStudy } from "../utils/RecentStudy";
+import VerifyPasswordModal from "./VerifyPasswordModal";
+import { saveRecentStudy, deleteRecentStudy } from "../utils/RecentStudy";
 
 export const Study = ({ item, todo }) => {
   return (
@@ -23,11 +28,18 @@ export const Study = ({ item, todo }) => {
 
 const StudyTop = ({ item }) => {
   const { id } = useParams();
+  const nav = useNavigate();
 
   const [showPicker, setShowPicker] = useState(false);
   const [showMoreEmoji, setShowMoreEmoji] = useState(false);
   const buttonRef = useRef(null);
   const emojiRef = useRef(null);
+  const modalsRef = useRef({
+    edit: null,
+    todo: null,
+    focus: null,
+    delete: null,
+  });
   const togglePicker = () => {
     setShowPicker(!showPicker);
   };
@@ -37,16 +49,108 @@ const StudyTop = ({ item }) => {
   };
 
   const handleEmoticonClick = async (e) => {
-    await createEmoticon(id, e.emoji);
+    try {
+      await createEmoticon(id, e.emoji);
+      const studyItem = await getStudyItem(id);
+      const {
+        nickname,
+        studyname,
+        description,
+        point,
+        createdAt,
+        img,
+        Emoticon,
+      } = studyItem || {};
+      const studyData = {
+        id,
+        nickname,
+        studyname,
+        description,
+        point,
+        createdAt,
+        img,
+        Emoticon,
+      };
+      saveRecentStudy(studyData);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleDeleteStudy = async (id) => {
     deleteRecentStudy(id);
     await deleteStudyGroup(id);
+    nav(`/`);
+  };
+
+  const handleModalShow = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.showModal();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
+  };
+
+  const handleModalClose = (key) => {
+    const modal = modalsRef.current[key];
+    if (modal) {
+      modal.close();
+    } else {
+      console.warn(`${key} modal does not exist!`);
+    }
+  };
+
+  const handleModalEditSubmit = () => {
+    nav(`/study/${item.id}/edit`);
+  };
+
+  const handleModalTodoSubmit = () => {
+    nav(`/study/${item.id}/todo`);
+  };
+
+  const handleModalFocusSubmit = () => {
+    nav(`/study/${item.id}/focus`);
+  };
+
+  const handleModalDeleteSubmit = () => {
+    handleDeleteStudy(item.id);
   };
 
   return (
     <div className="study-top">
+      <VerifyPasswordModal
+        key={1}
+        modalRef={(ref) => (modalsRef.current.edit = ref)}
+        item={item}
+        btnText={"수정하러 가기"}
+        handleModalClose={() => handleModalClose("edit")}
+        onSubmit={handleModalEditSubmit}
+      />
+      <VerifyPasswordModal
+        key={2}
+        modalRef={(ref) => (modalsRef.current.todo = ref)}
+        item={item}
+        btnText={"오늘의 습관으로 가기"}
+        handleModalClose={() => handleModalClose("todo")}
+        onSubmit={handleModalTodoSubmit}
+      />
+      <VerifyPasswordModal
+        key={3}
+        modalRef={(ref) => (modalsRef.current.focus = ref)}
+        item={item}
+        btnText={"오늘의 집중으로 가기"}
+        handleModalClose={() => handleModalClose("focus")}
+        onSubmit={handleModalFocusSubmit}
+      />
+      <VerifyPasswordModal
+        key={4}
+        modalRef={(ref) => (modalsRef.current.delete = ref)}
+        item={item}
+        btnText={"삭제하기"}
+        handleModalClose={() => handleModalClose("delete")}
+        onSubmit={handleModalDeleteSubmit}
+      />
       <div className="study-menu">
         <div className="emoji-container">
           <div className="tag-box ">
@@ -113,26 +217,33 @@ const StudyTop = ({ item }) => {
         </div>
 
         <div className="study-menu-buttons">
-          <div>공유하기</div>
+          <div className="text-color">공유하기</div>
           <div>|</div>
-          <div>수정하기</div>
-          <div>|</div>
-          <div className="delete-button" onClick={() => handleDeleteStudy(id)}>
-            스터디 삭제하기
+          <div className="text-color" onClick={() => handleModalShow("edit")}>
+            수정하기
           </div>
-          {/* 비밀번호 모달 구현 되면 삭제 후 홈페이지로 이동하게 수정 */}
+          <div>|</div>
+          <div onClick={() => handleModalShow("delete")}>스터디 삭제하기</div>
         </div>
       </div>
       <div className="study-container">
         <div className="study-tilte-box">
-          <div className="study-tilte">{`${item.nickname}의 ${item.studyname}`}</div>
+          <div className="study-tilte">
+            {item.nickname ? `${item.nickname}의 ${item.studyname}` : ""}
+          </div>
           <div className="study-tilte-buttons">
-            <Link to={`/study/${id}/todo`} className="study-tilte-button">
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("todo")}
+            >
               오늘의 습관
-            </Link>
-            <Link to={`/study/${id}/focus`} className="study-tilte-button">
+            </div>
+            <div
+              className="study-tilte-button"
+              onClick={() => handleModalShow("focus")}
+            >
               오늘의 집중
-            </Link>
+            </div>
           </div>
         </div>
         <div className="study-content">
@@ -144,7 +255,7 @@ const StudyTop = ({ item }) => {
             <div className="study-content-subtitle">현재까지 흭득한 포인트</div>
             <div className="point point-text">
               <img src={ic_point} alt="ic_point" />
-              {`${item.point}P 흭득`}
+              {item.point ? `${item.point}P 흭득` : ""}
             </div>
           </div>
         </div>

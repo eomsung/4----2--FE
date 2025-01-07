@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3100";
+// const BASE_URL = "http://localhost:3100";
+const BASE_URL = "https://fs4-studyforest-team2-be.onrender.com";
 
 export const getStudyListItem = async ({
   page = 1,
@@ -46,6 +47,22 @@ export const getStudyItem = async (id) => {
   }
 };
 
+export const getStudyItemId = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/studyids`, {
+      method: "GET",
+    });
+    if (!res.ok) {
+      throw new Error(`Error: response status is ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (e) {
+    console.log(e.message);
+    return [];
+  }
+};
+
 export const createStudyGroup = async (studyGroupData) => {
   try {
     const response = await fetch(`${BASE_URL}/study`, {
@@ -78,6 +95,27 @@ export const deleteStudyGroup = async (id) => {
     return await res.json();
   } catch (e) {
     console.log(e.message);
+  }
+};
+
+export const patchStudyGroup = async (id, updatedData) => {
+  try {
+    const response = await fetch(`${BASE_URL}/study/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error creating study group:", error.message);
+    throw error;
   }
 };
 
