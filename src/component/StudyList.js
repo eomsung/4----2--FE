@@ -28,7 +28,7 @@ export const StudyList = ({
             ))
           ) : (
             <div className="study-list-empty">
-              <p style={{ padding: "30rem" }}>아직 둘러볼 스터디가 없어요</p>
+              <p>아직 둘러볼 스터디가 없어요</p>
             </div>
           )}
         </div>

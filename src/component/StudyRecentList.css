@@ -36,6 +36,10 @@
   border-radius: 2rem;
   justify-content: center;
   align-items: center;
+
+  flex: 1 1 30%;
+  max-width: 35.8rem;
+  min-width: 28rem;
 }
 
 .study-item-text-wrap {
@@ -104,4 +108,92 @@
   font-weight: 500;
   gap: 0.8rem;
   white-space: nowrap;
+}
+
+/* 반응형 미디어쿼리 추가 */
+@media (max-width: 1199px) and (min-width: 1114px) {
+  .study-list {
+    width: 90%;
+  }
+  .study-list-wrap {
+    width: 100%;
+  }
+  .study-item-box {
+    width: 31.8rem;
+    height: 23.3rem;
+  }
+  .study-item-text-wrap {
+    width: 25.8rem;
+  }
+}
+
+@media (max-width: 1114px) and (min-width: 992px) {
+  .study-list {
+    width: 90%;
+  }
+  .study-list-wrap {
+    width: 100%;
+  }
+  .study-item-box {
+    width: 28.8rem;
+    height: 19.3rem;
+  }
+  .study-item-text-wrap {
+    width: 22.8rem;
+  }
+  .study-item-tilte {
+    font-size: 1.6rem;
+  }
+  .date {
+    font-size: 1.2rem;
+  }
+  .tag {
+    font-size: 1.1rem;
+  }
+  .tag-text {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 634px) {
+  .study-list {
+    width: 90%;
+  }
+  .study-list-wrap {
+    width: 100%;
+  }
+  .study-item-box {
+    flex: 1 1 calc(50% - 1.2rem);
+    height: 23.3rem;
+    margin: 0.6rem;
+  }
+
+  .study-list:nth-child(1) .study-list-box > div:nth-child(3) .study-item-box {
+    display: none;
+  }
+  #header-button {
+    display: block;
+  }
+}
+
+/* 모바일 flex 1열배치 미작동 확인 후 수정 예정 */
+@media (max-width: 633px) {
+  .study-list {
+    width: 90%;
+  }
+  .study-list-wrap {
+    width: 100%;
+  }
+  .study-item-box {
+    flex: 1 1 calc(100% - 1.2rem);
+    height: 23.3rem;
+    margin: 0.6rem;
+  }
+
+  .study-list:nth-child(1) .study-list-box > div:nth-child(3) .study-item-box {
+    display: none;
+  }
+  #header-button {
+    display: block;
+  }
 }
