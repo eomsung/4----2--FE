@@ -115,38 +115,6 @@ export function TodayFocusPage() {
     return () => clearInterval(timer); // 타이머 정리
   }, [isRunning, pointCnt, studyItem]); // studyItem도 의존성에 포함
 
-  useEffect(() => {
-    let timer;
-    if (isRunning) {
-      timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
-          if (prevTime - 1 < 0) {
-            // studyItem이 유효한지 확인
-            if (studyItem && studyItem.id) {
-              setIsRunning(false); // 타이머 멈춤
-              setPoint((prevPoint) => {
-                if (pointCnt > 0) {
-                  setPointCnt(1);
-                  return prevPoint;
-                }
-                const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
-                // 포인트 업데이트 후 서버에 반영
-                const id = studyItem.id;
-
-                patchStudyPoint(id, newPoint);
-
-                return newPoint;
-              });
-            }
-            return INITIAL_TIME; // 초기값으로 복귀
-          }
-          return prevTime - 1;
-        });
-      }, 1000);
-    }
-    return () => clearInterval(timer); // 타이머 정리
-  }, [isRunning, pointCnt, studyItem]); // studyItem도 의존성에 포함
-
   ///// Return JSX /////
   return (
     <div className="fulll">
