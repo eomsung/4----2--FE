@@ -89,14 +89,14 @@ fieldset {
   z-index: 0;
 }
 
-.create-button::before {
+/* .create-button::before {
   content: "만들기";
   position: absolute;
   top: 13px;
   left: 321px;
   color: #5e7d57;
   z-index: -1;
-}
+} */
 
 .error-msg {
   font-size: 14px;
@@ -126,8 +126,17 @@ fieldset {
   left: 660px;
 }
 
-@media (max-width: 744px) {
-  /* 744px 이하에서 적용될 스타일 */
+@media (max-width: 750px) {
+  .StudyCreate {
+    max-width: 95vw; /* 브라우저 화면 너비의 100%로 제한 */
+    width: 98%; /* 기본 너비를 부모 요소 또는 컨테이너의 100%로 설정 */
+  }
+  .background-option-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+  }
 }
 
 @media (max-width: 365px) {
@@ -152,14 +161,14 @@ fieldset {
     width: 100%;
   }
 
-  .create-button::before {
+  /* .create-button::before {
     content: "만들기";
     position: absolute;
     top: 13.5px;
     left: 133px;
     color: #5e7d57;
     z-index: -1;
-  }
+  } */
 
   .btn-showPassword {
     top: 43px;

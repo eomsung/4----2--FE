@@ -33,7 +33,7 @@ export const StudyItem = ({ item }) => {
         <div className="study-item-text-box">
           <div className="study-item-header">
             <div className="study-item-tilte">
-              {`${item.nickname}의 ${item.studyname}`}
+              <h3>{`${item.nickname}의 ${item.studyname}`}</h3>
               <p className="point">
                 <img src={ic_point} alt="ic_point" />
                 {`${item.point}P 흭득`}
@@ -41,7 +41,7 @@ export const StudyItem = ({ item }) => {
             </div>
             <p className="date">{`${days}일째 진행 중`}</p>
           </div>
-          <div>{item.description}</div>
+          <div className="study-item-description">{item.description}</div>
         </div>
         <div className="tag-box">
           {item.Emoticon &&

@@ -1,8 +1,26 @@
+.study-item-box h3 {
+  width: 250px; /* 글씨가 초과되었을 때 기준 너비 */
+  white-space: nowrap; /* 줄 바꿈을 하지 않음 */
+  overflow: hidden; /* 넘친 텍스트를 숨김 */
+  text-overflow: ellipsis; /* 말줄임표(...) 추가 */
+}
+
+.study-item-description {
+  width: 298px; /* 텍스트가 들어갈 컨테이너 너비 */
+  height: 60px; /* 컨테이너 높이 */
+  overflow: hidden; /* 넘친 텍스트 숨김 */
+  display: -webkit-box; /* 플렉스박스와 비슷한 레이아웃 */
+  -webkit-line-clamp: 3; /* 최대 3줄까지 표시 */
+  -webkit-box-orient: vertical; /* 수직 방향으로 텍스트 흐름 */
+  line-height: 20px; /* 줄 높이 */
+}
+
 .study-item-box {
   background-position: "center";
   background-repeat: "no-repeat";
   background-size: 110% auto;
 }
+
 .study-item-box-1 {
   background-image: url("./../img/bgImg1.png");
 }

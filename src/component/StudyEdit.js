@@ -107,7 +107,7 @@ const StudyEdit = () => {
   };
 
   return (
-    <div className="StudyCreate">
+    <div className="StudyEdit">
       <h2 className="page-title">스터디 수정하기</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
