@@ -15,7 +15,7 @@ body {
   /* line-height: 1.5; */
 }
 
-.StudyCreate {
+.StudyEdit {
   background-color: #ffffff;
   width: 696px;
   margin: 40px auto;
@@ -34,33 +34,33 @@ body {
   font-size: 24px;
 }
 
-.StudyCreate form {
+.StudyEdit form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.StudyCreate form .input-container {
+.StudyEdit form .input-container {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.StudyCreate form input,
-.StudyCreate form textarea {
-  height: 40px;
+.StudyEdit form input,
+.StudyEdit form textarea {
+  height: 48px;
   border-radius: 15px;
   border: 1px solid #dddddd;
   padding: 0 25px;
 }
 
-.StudyCreate form textarea {
+.StudyEdit form textarea {
   height: 98px;
   padding: 20px 25px;
 }
 
-.StudyCreate label {
+.StudyEdit label {
   font-weight: 600;
   font-size: 18px;
   display: block;
@@ -70,10 +70,10 @@ fieldset {
   display: flex;
 }
 
-.create-button {
+.StudyEdit .edit-button {
   /* display: flex;
-  align-items: center; 
-  justify-content: center; */
+    align-items: center; 
+    justify-content: center; */
 
   position: relative;
 
@@ -87,10 +87,19 @@ fieldset {
   font-size: 18px;
   font-family: "EF_jejudoldam", Arial, sans-serif;
   z-index: 0;
-  text-shadow: 0px -2.2px 0px #578246;
 }
 
-.error-msg {
+.StudyEdit .edit-button::before {
+  content: "수정하기";
+  /* writing-mode: horizontal-tb; */
+  position: absolute;
+  top: 13px;
+  left: 100px;
+  color: #5e7d57;
+  z-index: -1;
+}
+
+.StudyEdit .error-msg {
   font-size: 14px;
   color: #c41013;
 }
@@ -110,7 +119,7 @@ fieldset {
   position: relative;
 }
 
-.btn-showPassword {
+.StudyEdit .btn-showPassword {
   position: absolute;
 
   width: 24px;
@@ -120,53 +129,46 @@ fieldset {
 
 @media (max-width: 744px) {
   /* 744px 이하에서 적용될 스타일 */
-  .background-option-container img {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
-  }
-  .StudyCreate {
-    width: 80%;
-  }
-  .background-option-container {
-    gap: 20px;
-  }
-  .background-option-container img {
-    height: auto;
-    object-fit: contain;
-    max-height: 70%;
-  }
-  #header-button {
-    display: none;
-  }
 }
 
 @media (max-width: 365px) {
   /* 365px 이하에서 적용될 스타일 */
-  .StudyCreate {
-    width: 80%;
+
+  html,
+  body {
+    margin: 0; /* 기본 여백 제거 */
+    padding: 0; /* 기본 여백 제거 */
+    width: 100%; /* 화면 너비에 맞게 조정 */
+    /* overflow-x: hidden;  */
   }
+  .StudyEdit {
+    width: 320px;
+    margin: 0;
+  }
+
   .background-option-container {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
   }
-  .page-title {
-    font-size: 18px;
+
+  .edit-button::before {
+    content: "수정하기";
+    position: absolute;
+    top: 13.5px;
+    left: 133px;
+    color: #5e7d57;
+    z-index: -1;
   }
-  label {
-    font-size: 14px;
+
+  .StudyEdit .btn-showPassword {
+    top: 43px;
+    left: 280px;
   }
 }
 
 input::-ms-reveal,
 input::-ms-clear {
   display: none;
-}
-
-.text-color {
-  color: #578246;
 }

@@ -23,6 +23,7 @@ export const StudyItem = ({ item }) => {
     saveRecentStudy(studyData);
     navigate(`/study/${item.id}`);
   };
+
   return (
     <div
       className={`study-item-box study-item-box-${item.img}`}
@@ -44,7 +45,7 @@ export const StudyItem = ({ item }) => {
         </div>
         <div className="tag-box">
           {item.Emoticon &&
-            item.Emoticon.map((emoticon, index) => (
+            item.Emoticon.slice(0, 3).map((emoticon, index) => (
               <div key={index} className="tag">
                 {`${emoticon.emoticons} ${emoticon.count}`}
               </div>
