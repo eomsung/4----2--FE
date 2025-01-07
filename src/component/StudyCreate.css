@@ -126,8 +126,17 @@ fieldset {
   left: 660px;
 }
 
-@media (max-width: 744px) {
-  /* 744px 이하에서 적용될 스타일 */
+@media (max-width: 750px) {
+  .StudyCreate {
+    max-width: 95vw; /* 브라우저 화면 너비의 100%로 제한 */
+    width: 98%; /* 기본 너비를 부모 요소 또는 컨테이너의 100%로 설정 */
+  }
+  .background-option-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 100%;
+  }
 }
 
 @media (max-width: 365px) {

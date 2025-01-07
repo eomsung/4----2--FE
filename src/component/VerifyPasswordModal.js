@@ -52,11 +52,7 @@ const VerifyPasswordModal = ({
       <h3>{`${item.nickname}의 ${item.studyname}`}</h3>
       <p>권한이 필요해요!</p>
       <form method="dialog">
-<<<<<<< HEAD
         <label htmlFor={`password-${key}`}>비밀번호</label>
-=======
-        <label htmlFor="password">비밀번호</label>
->>>>>>> 7b1a7f510308a80ce345179b45deb1a5a4a29719
         <input
           type={showPassword ? "text" : "password"}
           id={`password-${key}`}
