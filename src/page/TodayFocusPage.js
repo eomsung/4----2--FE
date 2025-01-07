@@ -30,14 +30,14 @@ export function TodayFocusPage() {
   };
 
   const handleSetTime = () => {
-    if (Number(customMinutes) >= 10) {
+    if (Number(customMinutes) >= 1) {
       setTimeLeft(Number(customMinutes) * 60);
       setWarningMessage(""); // 경고 메시지 초기화
       setIsInputVisible(false);
       setIsRunning(false);
       setPauseMessage("");
     } else {
-      setWarningMessage("⛔ 10분 이상을 입력해야 합니다.");
+      setWarningMessage("⛔ 1분 이상을 입력해야 합니다.");
     }
   };
 
