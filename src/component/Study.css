@@ -1,20 +1,23 @@
 .study {
+  box-sizing: border-box;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  min-width: 120rem;
   min-height: 88.9rem;
   align-items: center;
-  padding: 4rem;
+  padding: 4rem 40px;
   box-sizing: border-box;
   color: #414141;
   border-radius: 2rem;
+
+  max-width: 1200px;
 }
 .study-wrap {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  min-width: 112rem;
+  max-width: 100%;
 }
 /* study top  */
 
@@ -210,4 +213,11 @@
   gap: 1rem;
   flex-wrap: wrap;
   border-radius: 1.5rem;
+}
+
+@media (max-width: 1200px) {
+  .study {
+    max-width: 96vw; /* 브라우저 화면 너비의 100%로 제한 */
+    width: 100%; /* 기본 너비를 부모 요소 또는 컨테이너의 100%로 설정 */
+  }
 }

@@ -122,6 +122,7 @@ function StudyCreate() {
             value={formData.studyname}
             onChange={handleChange}
             placeholder="스터디 이름을 입력해주세요"
+            maxLength={25}
             className={errors.studyname ? "error-input" : ""}
           />
           {errors.studyname && (
@@ -136,6 +137,7 @@ function StudyCreate() {
             value={formData.description}
             onChange={handleChange}
             placeholder="소개 멘트를 작성해 주세요."
+            maxLength={150}
             className={errors.description ? "error-input" : ""}
           />
           {errors.description && (
@@ -166,6 +168,7 @@ function StudyCreate() {
             value={formData.password}
             onChange={handleChange}
             placeholder="비밀번호를 입력해 주세요"
+            maxLength={25}
             className={errors.password ? "error-input" : ""}
           />
           {errors.password && (
@@ -187,6 +190,7 @@ function StudyCreate() {
             value={formData.passwordConfirm}
             onChange={handleChange}
             placeholder="비밀번호를 다시 한번 입력해 주세요"
+            maxLength={25}
             className={errors.passwordConfirm ? "error-input" : ""}
           />
           {errors.passwordConfirm && (

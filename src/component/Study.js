@@ -120,6 +120,7 @@ const StudyTop = ({ item }) => {
   return (
     <div className="study-top">
       <VerifyPasswordModal
+        key={1}
         modalRef={(ref) => (modalsRef.current.edit = ref)}
         item={item}
         btnText={"수정하러 가기"}
@@ -127,6 +128,7 @@ const StudyTop = ({ item }) => {
         onSubmit={handleModalEditSubmit}
       />
       <VerifyPasswordModal
+        key={2}
         modalRef={(ref) => (modalsRef.current.todo = ref)}
         item={item}
         btnText={"오늘의 습관으로 가기"}
@@ -134,6 +136,7 @@ const StudyTop = ({ item }) => {
         onSubmit={handleModalTodoSubmit}
       />
       <VerifyPasswordModal
+        key={3}
         modalRef={(ref) => (modalsRef.current.focus = ref)}
         item={item}
         btnText={"오늘의 집중으로 가기"}
@@ -141,6 +144,7 @@ const StudyTop = ({ item }) => {
         onSubmit={handleModalFocusSubmit}
       />
       <VerifyPasswordModal
+        key={4}
         modalRef={(ref) => (modalsRef.current.delete = ref)}
         item={item}
         btnText={"삭제하기"}
