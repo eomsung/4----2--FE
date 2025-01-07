@@ -49,28 +49,32 @@ const StudyTop = ({ item }) => {
   };
 
   const handleEmoticonClick = async (e) => {
-    await createEmoticon(id, e.emoji);
-    const studyItem = await getStudyItem(id);
-    const {
-      nickname,
-      studyname,
-      description,
-      point,
-      createdAt,
-      img,
-      Emoticon,
-    } = studyItem || {};
-    const studyData = {
-      id: item.id,
-      nickname,
-      studyname,
-      description,
-      point,
-      createdAt,
-      img,
-      Emoticon,
-    };
-    saveRecentStudy(studyData);
+    try {
+      await createEmoticon(id, e.emoji);
+      const studyItem = await getStudyItem(id);
+      const {
+        nickname,
+        studyname,
+        description,
+        point,
+        createdAt,
+        img,
+        Emoticon,
+      } = studyItem || {};
+      const studyData = {
+        id,
+        nickname,
+        studyname,
+        description,
+        point,
+        createdAt,
+        img,
+        Emoticon,
+      };
+      saveRecentStudy(studyData);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleDeleteStudy = async (id) => {
@@ -220,7 +224,11 @@ const StudyTop = ({ item }) => {
       </div>
       <div className="study-container">
         <div className="study-tilte-box">
-          <div className="study-tilte">{`${item.nickname}의 ${item.studyname}`}</div>
+          <div className="study-tilte">
+            {item.nickname
+              ? `${item.nickname}의 ${item.studyname}`
+              : "삭제된 페이지입니다"}
+          </div>
           <div className="study-tilte-buttons">
             <div
               className="study-tilte-button"
@@ -245,7 +253,7 @@ const StudyTop = ({ item }) => {
             <div className="study-content-subtitle">현재까지 흭득한 포인트</div>
             <div className="point point-text">
               <img src={ic_point} alt="ic_point" />
-              {`${item.point}P 흭득`}
+              {item.point ? `${item.point}P 흭득` : ""}
             </div>
           </div>
         </div>
