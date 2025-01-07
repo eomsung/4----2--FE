@@ -2,7 +2,7 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  min-width: 120rem;
+  width: 100%;
   min-height: 88.9rem;
   align-items: center;
   padding: 4rem;
@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  min-width: 112rem;
+  width: 100%;
 }
 /* study top  */
 
@@ -100,7 +100,7 @@
 
 /* study bottom  */
 .study-bottom {
-  width: 112rem;
+  width: 97%;
   height: 51.1rem;
   border-radius: 2rem;
   border: 0.1rem solid #dddddd;
@@ -210,4 +210,84 @@
   gap: 1rem;
   flex-wrap: wrap;
   border-radius: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .study {
+    width: 97%;
+  }
+  .study-top {
+    width: 90%;
+  }
+  .study-menu-buttons {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .study-tilte-button {
+    width: 12.4rem;
+    border-radius: 1.3rem;
+    height: 4.6rem;
+    font-size: 1.4rem;
+  }
+  .study-tilte {
+    font-size: 2.6rem;
+  }
+  .study-content {
+    font-size: 1.5rem;
+  }
+  /* study-menu, study-title-button 오른쪽 여백 생김*/
+}
+
+@media (max-width: 1024px) {
+  .study {
+    width: 97%;
+  }
+  .study-top {
+    width: 90%;
+  }
+  .study-menu-buttons {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  .study-tilte-button {
+    width: 12.4rem;
+    border-radius: 1.3rem;
+    height: 4.6rem;
+    font-size: 1.4rem;
+  }
+  .study-tilte {
+    font-size: 2.6rem;
+  }
+  .study-content {
+    font-size: 1.5rem;
+  }
+  .study-bottom {
+    width: 95%;
+  }
+  /* study-menu, study-title-button 오른쪽 여백 생김*/
+}
+@media (max-width: 687px) {
+  .study-menu {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .study-menu-buttons {
+    position: absolute;
+    right: 40px;
+    top: 140px;
+  }
+  .emoji-container {
+    padding-top: 20px;
+  }
+  .study-tilte-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .study-bottom {
+    width: 90%;
+  }
 }
