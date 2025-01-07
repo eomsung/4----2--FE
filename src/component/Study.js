@@ -225,9 +225,7 @@ const StudyTop = ({ item }) => {
       <div className="study-container">
         <div className="study-tilte-box">
           <div className="study-tilte">
-            {item.nickname
-              ? `${item.nickname}의 ${item.studyname}`
-              : "삭제된 페이지입니다"}
+            {item.nickname ? `${item.nickname}의 ${item.studyname}` : ""}
           </div>
           <div className="study-tilte-buttons">
             <div
