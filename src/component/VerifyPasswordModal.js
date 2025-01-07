@@ -51,7 +51,7 @@ const VerifyPasswordModal = ({
       <h3>{`${item.nickname}의 ${item.studyname}`}</h3>
       <p>권한이 필요해요!</p>
       <form method="dialog">
-        <label for="password">비밀번호</label>
+        <label htmlFor="password">비밀번호</label>
         <input
           type={showPassword ? "text" : "password"}
           id="password"

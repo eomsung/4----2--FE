@@ -66,9 +66,7 @@ h2 {
   margin-top: 20px;
 }
 
-
-
-*/ .cancel-btn {
+.cancel-btn {
   background-color: rgba(221, 221, 221, 1);
 }
 
@@ -81,10 +79,8 @@ h2 {
   border-radius: 35px;
   opacity: 0px;
   margin-top: 10px;
-  background: #FDE0E9;
+  background: #fde0e9;
   color: red;
-
-
 }
 
 .input-text {
@@ -107,10 +103,9 @@ h2 {
   align-items: center;
 
   gap: 24px;
-
 }
 
-.modal-actions>button {
+.modal-actions > button {
   width: 288px;
   height: 58px;
   padding: 10px;
@@ -126,16 +121,15 @@ h2 {
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-
 }
 
-.modal-actions>#cancel {
-  background-color: #DDDDDD;
+.modal-actions > #cancel {
+  background-color: #dddddd;
   color: aliceblue;
   text-shadow: 1px 1px black;
 }
 
-.modal-actions>#save {
-  background-color: #99C08E;
+.modal-actions > #save {
+  background-color: #99c08e;
   color: white;
 }
