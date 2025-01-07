@@ -89,14 +89,14 @@ fieldset {
   z-index: 0;
 }
 
-.create-button::before {
+/* .create-button::before {
   content: "만들기";
   position: absolute;
   top: 13px;
   left: 321px;
   color: #5e7d57;
   z-index: -1;
-}
+} */
 
 .error-msg {
   font-size: 14px;
@@ -152,14 +152,14 @@ fieldset {
     width: 100%;
   }
 
-  .create-button::before {
+  /* .create-button::before {
     content: "만들기";
     position: absolute;
     top: 13.5px;
     left: 133px;
     color: #5e7d57;
     z-index: -1;
-  }
+  } */
 
   .btn-showPassword {
     top: 43px;

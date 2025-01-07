@@ -89,15 +89,14 @@ fieldset {
   z-index: 0;
 }
 
-.StudyEdit .edit-button::before {
+/* .StudyEdit .edit-button::before {
   content: "수정하기";
-  /* writing-mode: horizontal-tb; */
   position: absolute;
   top: 13px;
   left: 100px;
   color: #5e7d57;
   z-index: -1;
-}
+} */
 
 .StudyEdit .error-msg {
   font-size: 14px;
@@ -153,14 +152,14 @@ fieldset {
     width: 100%;
   }
 
-  .edit-button::before {
+  /* .edit-button::before {
     content: "수정하기";
     position: absolute;
     top: 13.5px;
     left: 133px;
     color: #5e7d57;
     z-index: -1;
-  }
+  } */
 
   .StudyEdit .btn-showPassword {
     top: 43px;

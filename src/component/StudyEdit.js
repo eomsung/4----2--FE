@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createStudyGroup } from "../api/studyService";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./StudyEdit.css";
 import BackgroundOption from "./BackgroundOption";
 import pwIconOn from "./../img/btn_visibility_on.png";
 import pwIconOff from "./../img/btn_visibility_off.png";
+import { getStudyItem } from "../api/studyService";
 
 const StudyEdit = () => {
   const navigate = useNavigate();
+  const param = useParams();
   const [formData, setFormData] = useState({
     nickname: "",
     studyname: "",
     description: "",
     img: "",
     password: "",
-    passwordConfirm: "",
   });
   const [errors, setErrors] = useState({
     nickname: "",
@@ -22,9 +23,30 @@ const StudyEdit = () => {
     description: "",
     img: "",
     password: "",
-    passwordConfirm: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { nickname, studyname, description, img, password } =
+          await getStudyItem(param.id);
+        setFormData({
+          nickname,
+          studyname,
+          description,
+          img,
+          password,
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        // setIsLoading(false); // 로딩 완료
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const validateField = (name, value) => {
     switch (name) {
@@ -42,9 +64,6 @@ const StudyEdit = () => {
         return "";
       case "password":
         if (!value) return "비밀번호를 입력해주세요";
-        return "";
-      case "passwordConfirm":
-        if (!value) return "비밀번호를 다시 한번 입력해주세요.";
         if (formData.password !== value) return "비밀번호가 일치하지 않습니다.";
         return "";
       default:
@@ -92,7 +111,7 @@ const StudyEdit = () => {
   };
 
   return (
-    <div className="StudyCreate">
+    <div className="StudyEdit">
       <h2 className="page-title">스터디 수정하기</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
@@ -161,7 +180,6 @@ const StudyEdit = () => {
             type={showPassword ? "text" : "password"}
             id="password"
             name="password"
-            value={formData.password}
             onChange={handleChange}
             placeholder="비밀번호를 입력해 주세요"
             className={errors.password ? "error-input" : ""}
@@ -176,28 +194,7 @@ const StudyEdit = () => {
             alt="password show icon"
           />
         </div>
-        <div className="input-container input-container-password">
-          <label for="password-confirm">비밀번호 확인</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password-confirm"
-            name="passwordConfirm"
-            value={formData.passwordConfirm}
-            onChange={handleChange}
-            placeholder="비밀번호를 다시 한번 입력해 주세요"
-            className={errors.passwordConfirm ? "error-input" : ""}
-          />
-          {errors.passwordConfirm && (
-            <div className="error-msg">*{errors.passwordConfirm}</div>
-          )}
-          <img
-            src={showPassword ? pwIconOn : pwIconOff}
-            className="btn-showPassword"
-            onClick={handlePasswordToggle}
-            alt="password show icon"
-          />
-        </div>
-        <button type="submit" className="create-button">
+        <button type="submit" className="edit-button">
           수정하기
         </button>
       </form>
