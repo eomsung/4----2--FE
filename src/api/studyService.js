@@ -1,4 +1,5 @@
-const BASE_URL = "http://localhost:3100";
+// const BASE_URL = "http://localhost:3100";
+const BASE_URL = "https://fs4-studyforest-team2-be.onrender.com";
 
 export const getStudyListItem = async ({
   page = 1,
