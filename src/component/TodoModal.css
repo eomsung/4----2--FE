@@ -130,4 +130,5 @@ h2 {
 .modal-actions > #save {
   background-color: #99c08e;
   color: white;
+  z-index: 100;
 }

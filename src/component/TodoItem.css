@@ -1,24 +1,24 @@
 .todo-item-block {
-    display: flex; /* Flexbox 활성화 */
-    align-items: center; /* 수직 중앙 정렬 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    width: 400px;
-    height: 54px;
-    background-color: rgba(238, 238, 238, 1); /* 기본 배경색 */
-    color: rgba(129, 129, 129, 1); /* 기본 글자 색상 */
-    border-radius: 20px; /* 둥근 모서리 */
-    padding: 12px 16px;
-    margin-left: 400px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 25px; /* 글자 크기 */
-    font-weight: 700;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    text-align: center; /* 텍스트 가운데 정렬 */
+  display: flex; /* Flexbox 활성화 */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  width: 400px;
+  height: 54px;
+  background-color: rgba(238, 238, 238, 1); /* 기본 배경색 */
+  color: rgba(129, 129, 129, 1); /* 기본 글자 색상 */
+  border-radius: 20px; /* 둥근 모서리 */
+  padding: 12px 16px;
+  margin-left: 400px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 25px; /* 글자 크기 */
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+  text-align: center; /* 텍스트 가운데 정렬 */
 }
 
 .todo-item-block.clicked {
-    background-color: rgba(153, 192, 142, 1); /* 클릭 시 배경색 변경 */
-    color: rgba(255, 255, 255, 1); /* 클릭 시 글자 색상 변경 */
+  background-color: rgba(153, 192, 142, 1); /* 클릭 시 배경색 변경 */
+  color: rgba(255, 255, 255, 1); /* 클릭 시 글자 색상 변경 */
 }
