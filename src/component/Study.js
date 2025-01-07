@@ -259,7 +259,7 @@ const StudyTop = ({ item }) => {
             <div className="study-content-subtitle">현재까지 흭득한 포인트</div>
             <div className="point point-text">
               <img src={ic_point} alt="ic_point" />
-              {item.point ? `${item.point}P 흭득` : ""}
+              {item.point ? `${item.point}P 흭득` : "0P 흭득"}
             </div>
           </div>
         </div>
