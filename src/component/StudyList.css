@@ -1,6 +1,7 @@
 .submit-box {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 .study-input {
   width: 33.5rem;
@@ -32,10 +33,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  height: 100vh;
   width: 100%;
+  box-sizing: border-box;
 }
 .study-list-empty p {
   color: #818181;
   font-size: 2rem;
   font-weight: 500;
+  margin: 0;
+  width: 100%;
+  padding: 0;
 }

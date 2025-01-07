@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./TodayFocusPage.css";
 import { useParams } from "react-router-dom";
-import { getStudyItem, patchStudyPoint } from "../api/studyService"; // patchStudyPoint 임포트
+import { getStudyItem, patchStudyPoint } from "../api/studyService";
 import { useNavigate } from "react-router-dom";
 import ic_point from "../img/assets/ic_point.svg";
+
 export function TodayFocusPage() {
   const INITIAL_TIME = 1800; // 초기 타이머 시간 (30분)
   const POINT_INCREMENT = 3; // 포인트 증가량
 
-  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME); // 초기 타이머 시간
+  const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
   const [isRunning, setIsRunning] = useState(false);
-  const [isInputVisible, setIsInputVisible] = useState(false); // 입력창 표시 여부
-  const [customMinutes, setCustomMinutes] = useState(""); // 사용자 입력 시간 (빈 문자열로 초기화)
+  const [isInputVisible, setIsInputVisible] = useState(false);
+  const [customMinutes, setCustomMinutes] = useState("");
+  const [warningMessage, setWarningMessage] = useState(""); // 경고 메시지 상태 추가
   const [pauseMessage, setPauseMessage] = useState("");
   const [myPoint, setPoint] = useState(0);
   const [pointCnt, setPointCnt] = useState(0);
@@ -27,30 +29,34 @@ export function TodayFocusPage() {
     return time < 0 ? `-${formattedTime}` : formattedTime;
   };
 
-  // 시간 설정 처리
   const handleSetTime = () => {
-    setTimeLeft(Number(customMinutes) * 60); // 입력된 시간을 초로 변환
-    setIsInputVisible(false); // 입력창 숨김
-    setIsRunning(false); // 타이머 멈춤
+    if (Number(customMinutes) >= 1) {
+      setTimeLeft(Number(customMinutes) * 60);
+      setWarningMessage(""); // 경고 메시지 초기화
+      setIsInputVisible(false);
+      setIsRunning(false);
+      setPauseMessage("");
+    } else {
+      setWarningMessage("⛔ 1분 이상을 입력해야 합니다.");
+    }
   };
 
   const handleReset = () => {
     setTimeLeft(INITIAL_TIME);
     setIsRunning(false);
-    setIsInputVisible(false); // 입력창 숨김
+    setIsInputVisible(false);
   };
 
   useEffect(() => {
     if (isInputVisible) {
-      setCustomMinutes(""); // 입력값 초기화 (빈 문자열로 설정)
+      setCustomMinutes("");
       const inputElement = document.querySelector(".time-input");
       if (inputElement) {
-        inputElement.focus(); // input 태그에 focus
+        inputElement.focus();
       }
     }
   }, [isInputVisible]);
 
-  ////// Study API 데이터 로드 ///////
   const { id } = useParams();
   const [studyItem, setStudyItem] = useState({
     nickname: "",
@@ -62,13 +68,12 @@ export function TodayFocusPage() {
     const handleStudyItem = async () => {
       const studyitem = await getStudyItem(id);
       setStudyItem(studyitem);
-      setPoint(studyitem.point); // 초기 포인트 설정
+      setPoint(studyitem.point);
     };
 
     handleStudyItem();
-  }, [id]); // 의존성 배열에 id 추가
+  }, [id]);
 
-  ///// Navigation 처리 /////
   const navigate = useNavigate();
 
   const goToStudyListPage = () => {
@@ -78,6 +83,38 @@ export function TodayFocusPage() {
   const goToStudyHabitPage = () => {
     navigate(`/study/${id}/todo`);
   };
+  useEffect(() => {
+    let timer;
+    if (isRunning) {
+      timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+          if (prevTime - 1 < 0) {
+            // studyItem이 유효한지 확인
+            if (studyItem && studyItem.id) {
+              setIsRunning(false); // 타이머 멈춤
+              setPoint((prevPoint) => {
+                if (pointCnt > 0) {
+                  setPointCnt(1);
+                  return prevPoint;
+                }
+                const newPoint = prevPoint + POINT_INCREMENT; // 포인트 증가
+                // 포인트 업데이트 후 서버에 반영
+                const id = studyItem.id;
+
+                patchStudyPoint(id, newPoint);
+
+                return newPoint;
+              });
+            }
+            return INITIAL_TIME; // 초기값으로 복귀
+          }
+          return prevTime - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer); // 타이머 정리
+  }, [isRunning, pointCnt, studyItem]); // studyItem도 의존성에 포함
+
   useEffect(() => {
     let timer;
     if (isRunning) {
@@ -139,11 +176,14 @@ export function TodayFocusPage() {
                   setCustomMinutes(
                     e.target.value === "" ? "" : Number(e.target.value)
                   )
-                } // 입력값 반영
+                }
               />
               <button onClick={handleSetTime} className="set-button">
                 시간을 입력하고 <br /> 버튼을 눌러주세요.
               </button>
+              {warningMessage && (
+                <div className="warning-message">{warningMessage}</div>
+              )}
             </div>
           ) : (
             <>
@@ -155,7 +195,7 @@ export function TodayFocusPage() {
                 className="timer"
                 style={{
                   color:
-                    timeLeft < 0 ? "red" : timeLeft < 600 ? "red" : "black", // 글씨 색 변경
+                    timeLeft < 0 ? "red" : timeLeft < 600 ? "red" : "black",
                 }}
               >
                 {formatTime(timeLeft)}

@@ -47,9 +47,11 @@ const StudyTop = ({ item }) => {
   const toggleMoreEmoji = () => {
     setShowMoreEmoji(!showMoreEmoji);
   };
-
+  const [loading, setLoading] = useState(false);
   const handleEmoticonClick = async (e) => {
+    if (loading) return;
     try {
+      setLoading(true);
       await createEmoticon(id, e.emoji);
       const studyItem = await getStudyItem(id);
       const {
@@ -74,6 +76,8 @@ const StudyTop = ({ item }) => {
       saveRecentStudy(studyData);
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -277,14 +281,16 @@ const StudyBottom = ({ todo }) => {
         <div className="study-bottom">
           <div style={{ fontWeight: 800, fontSize: "24px" }}>습관 기록표</div>
           <div className="study-bottom-wrap">
-            <div className="week">
-              <p>월</p>
-              <p>화</p>
-              <p>수</p>
-              <p>목</p>
-              <p>금</p>
-              <p>토</p>
-              <p>일</p>
+            <div className="habit-container">
+              <div className="week">
+                <p>월</p>
+                <p>화</p>
+                <p>수</p>
+                <p>목</p>
+                <p>금</p>
+                <p>토</p>
+                <p>일</p>
+              </div>
             </div>
             <div className="study-bottom-container">
               {todoValues.map((habit, index) => (
