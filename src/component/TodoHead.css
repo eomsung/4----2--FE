@@ -48,15 +48,14 @@
   gap: 16px;
 }
 
-.btns>button {
-
+.btns > button {
   width: 144px;
   height: 48px;
   border-radius: 15px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   color: #818181;
   font-size: 16px;
   font-weight: 500;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   font-family: "Pretendard";
 }

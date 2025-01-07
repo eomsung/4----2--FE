@@ -77,7 +77,6 @@ h2 {
   height: 50px;
   padding: 12px;
   border-radius: 35px;
-  opacity: 0px;
   margin-top: 10px;
   background: #fde0e9;
   color: red;
@@ -112,7 +111,6 @@ h2 {
   gap: 10px;
   border: none;
   border-radius: 16px;
-  opacity: 0px;
 
   font-family: EF_jejudoldam;
   font-size: 18px;
@@ -132,4 +130,5 @@ h2 {
 .modal-actions > #save {
   background-color: #99c08e;
   color: white;
+  z-index: 100;
 }

@@ -77,7 +77,7 @@ const StudyEdit = () => {
       setErrors(newErrors);
 
       if (Object.keys(newErrors).length === 0) {
-        const result = await patchStudyGroup(id, formData); // 여기를 수정하면 됨
+        await patchStudyGroup(id, formData); // 여기를 수정하면 됨
         const studyItem = await getStudyItem(id);
         const {
           nickname,
